@@ -170,6 +170,8 @@ http://175.154.151.98:808/hls/14/index.m3u8
 #EXTINF:-1 tvg-name="CCTV13" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/2202/208/864/202204010051_2202208864_H32_1080.webp",CCTV13
 http://113.9.149.58:9003/hls/2013/index.m3u8
 #EXTINF:-1 tvg-name="CCTV13" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/2202/208/864/202204010051_2202208864_H32_1080.webp",CCTV13
+http://123.175.209.52:9003/hls/14/index.m3u8
+#EXTINF:-1 tvg-name="CCTV13" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/2202/208/864/202204010051_2202208864_H32_1080.webp",CCTV13
 https://cdn3.163189.xyz/163189/cctv13
 #EXTINF:-1 tvg-name="CCTV14" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5500/212/875/202204010054_1626678147073_H32_1080.webp",CCTV14
 http://47.119.24.76:59093/624878440
@@ -296,9 +298,9 @@ http://113.26.251.182:8009/hls/34/index.m3u8
 #EXTINF:-1 tvg-name="江苏卫视" group-title="卫视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5500/199/408/202104022140_5100156802_H32_1080.webp",江苏卫视
 http://175.154.151.98:808/hls/31/index.m3u8
 #EXTINF:-1 tvg-name="江苏卫视" group-title="卫视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5500/199/408/202104022140_5100156802_H32_1080.webp",江苏卫视
-http://183.207.248.71/cntv/live1/HD-2500k-1080P-jiangsustv/HD-2500k-1080P-jiangsustv
-#EXTINF:-1 tvg-name="江苏卫视" group-title="卫视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5500/199/408/202104022140_5100156802_H32_1080.webp",江苏卫视
 http://39.134.24.166/dbiptv.sn.chinamobile.com/PLTV/88888890/224/3221226200/index.m3u8
+#EXTINF:-1 tvg-name="江苏卫视" group-title="卫视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5500/199/408/202104022140_5100156802_H32_1080.webp",江苏卫视
+http://183.207.248.71/cntv/live1/HD-2500k-1080P-jiangsustv/HD-2500k-1080P-jiangsustv
 #EXTINF:-1 tvg-name="江苏卫视" group-title="卫视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5500/199/408/202104022140_5100156802_H32_1080.webp",江苏卫视
 http://39.134.115.163:8080/PLTV/88888910/224/3221225702/index.m3u8
 #EXTINF:-1 tvg-name="江苏卫视" group-title="卫视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5500/199/408/202104022140_5100156802_H32_1080.webp",江苏卫视
@@ -483,11 +485,11 @@ http://101.35.240.114:88/live.php?id=CHC家庭影院
 http://47.119.24.76:59093/952383261
 #EXTINF:-1 tvg-name="CHC影迷电影" group-title="数字" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5910/022/176/202504161629_1744788999453_H32_1080.webp",CHC影迷电影
 http://101.35.240.114:88/live.php?id=CHC影迷电影
-#EXTINF:-1 tvg-name="金鹰卡通" group-title="动画",金鹰卡通
-http://223.110.241.149:6610/gitv/live1/G_JINYING/G_JINYING/1.m3u8
-#EXTINF:-1 tvg-name="金鹰卡通" group-title="动画",金鹰卡通
+#EXTINF:-1 tvg-name="金鹰卡通" group-title="动画" tvg-logo="https://i.imgur.com/xfVHrKQ.png",金鹰卡通
 http://223.110.245.145/ott.js.chinamobile.com/PLTV/3/224/3221226303/index.m3u8
-#EXTINF:-1 tvg-name="金鹰卡通" group-title="动画",金鹰卡通
+#EXTINF:-1 tvg-name="金鹰卡通" group-title="动画" tvg-logo="https://i.imgur.com/xfVHrKQ.png",金鹰卡通
+http://223.110.241.149:6610/gitv/live1/G_JINYING/G_JINYING/1.m3u8
+#EXTINF:-1 tvg-name="金鹰卡通" group-title="动画" tvg-logo="https://i.imgur.com/xfVHrKQ.png",金鹰卡通
 http://112.25.48.68/live/program/live/jykt/1300000/mnf.m3u8
 #EXTINF:-1 tvg-name="嘉佳卡通" group-title="动画" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/2206/172/388/202304101530_2206172388_H32_1080.webp",嘉佳卡通
 http://47.119.24.76:59093/614952364
