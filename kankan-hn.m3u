@@ -1,5 +1,5 @@
-#EXTM3U x-tvg-url="http://exml.51zmt.top:11111/download2.php?f=e.xml.gz,https://itv.sspai.indevs.in/erw.xml.gz,http://47.119.24.76:59093/playback.xml,https://epg.aptv.app/pp.xml.gz,https://epg.aptv.app/xml"
-# 自动更新时间: 2026/3/5 22:31:24
+#EXTM3U x-tvg-url="https://live.lizanyang.top/e.xml，http://exml.51zmt.top:11111/download2.php?f=e.xml.gz,https://itv.sspai.indevs.in/erw.xml.gz,http://47.119.24.76:59093/playback.xml,https://epg.aptv.app/pp.xml.gz,https://epg.aptv.app/xml"
+# 自动更新时间: 2026/3/5 22:55:07
 #EXTINF:-1 tvg-id="CCTV1" tvg-name="CCTV1" group-title="央视" tvg-logo="https://live.lizanyang.top/tv/CCTV1.png",CCTV1
 http://iptv.cdn.ha.chinamobile.com/PLTV/88888888/224/3221227262/index.m3u8
 #EXTINF:-1 tvg-id="CCTV1" tvg-name="CCTV1" group-title="央视" tvg-logo="https://live.lizanyang.top/tv/CCTV1.png",CCTV1
