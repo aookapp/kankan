@@ -15,7 +15,7 @@ const TASKS = [
 
 // 如果你需要强行指定一个稳定的 EPG 节目单源，可以在这里填入，多个用逗号隔开
 // 留空则完全依赖自动从上述源文件中提取
-const CUSTOM_EPG = "https://live.lizanyang.top/e.xml，http://exml.51zmt.top:11111/download2.php?f=e.xml.gz";
+const CUSTOM_EPG = "https://live.lizanyang.top/e.xml,http://exml.51zmt.top:11111/download2.php?f=e.xml.gz";
 
 // --- 2. 你的自定义频道筛选模板 ---
 const TEMPLATE = `
