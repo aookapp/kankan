@@ -15,15 +15,15 @@ const TASKS = [
 
 // 如果你需要强行指定一个稳定的 EPG 节目单源，可以在这里填入，多个用逗号隔开
 // 留空则完全依赖自动从上述源文件中提取
-const CUSTOM_EPG = "https://live.lizanyang.top/e.xml,http://exml.51zmt.top:11111/download2.php?f=e.xml.gz";
+// --- 2. 填写合并后的 EPG 链接 ---
+const CUSTOM_EPG = "https://raw.githubusercontent.com/aookapp/kankan/main/epg.xml";
 
-// --- 2. 读取同目录下的 template.txt 文件 ---
+//
+
+// --- 3. 读取同目录下的 template.txt 文件 ---
 const TEMPLATE = fs.readFileSync(path.join(__dirname, 'template.txt'), 'utf-8');
 
-// --- 3. 解析模板并构建数据结构 ---
-const templateChannels = new Map();
-
-// --- 3. 解析模板并构建数据结构 ---
+// --- 4. 解析模板并构建数据结构 ---
 const templateChannels = new Map(); // 使用 Map 保持模板的插入顺序
 
 function initTemplate() {
