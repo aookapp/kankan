@@ -2,16 +2,42 @@ const fs = require('fs');
 const path = require('path');
 const zlib = require('zlib');
 
+// ==========================================
+// ⚙️ EPG 超级控制面板
+// ==========================================
+
+const AUTHOR_NAME = "aook";          // 1. 修改作者名
+const INCLUDE_YESTERDAY = false;     // 2. 是否保留昨天的数据？(true 保留，false 排除以极速加载)
+
+// 3. 广告屏蔽词典 (支持正则，发现新的广告随时往这里面加)
+const AD_KEYWORDS = [
+  /由[a-zA-Z0-9\.\/:-_]+提供节目单服务/gi,  // 拦截如 "由https://epg...提供"
+  /欢迎使用.*?/gi,
+  /关注微信公众号.*?/gi,
+  /更多节目请访问.*?/gi
+];
+
+// 4. 引入简繁转换库 (自动将繁体转为简体)
+let converter = (text) => text; // 默认原样输出
+try {
+  const OpenCC = require('opencc-js');
+  converter = OpenCC.Converter({ from: 't', to: 'cn' });
+} catch (e) {
+  console.log("⚠️ 未检测到 opencc-js 库，跳过简繁转换。请确保在 workflow 中运行了 npm install opencc-js");
+}
+
+// ==========================================
+
 // --- 1. EPG 源配置 ---
 const TASKS = [
-  { url: "https://live.lizanyang.top/e.xml", ua: "Mozilla/5.0" },
-  { url: "http://epg.51zmt.top:8000/e.xml.gz", ua: "Mozilla/5.0" },
-  { url: "https://epg.cdn.loc.cc/xml", ua: "Mozilla/5.0" },
+  { url: "https://epg.aptv.app/xml", ua: "AptvPlayer/1.2.5(iPhone)" },
   { url: "http://exml.51zmt.top:11111/download2.php?f=e.xml.gz", ua: "Mozilla/5.0" },
+  { url: "http://epg.51zmt.top:8000/e1.xml.gz", ua: "Mozilla/5.0" },
+  { url: "https://epg.cdn.loc.cc/xml", ua: "Mozilla/5.0" },
   { url: "https://itv.sspai.indevs.in/erw.xml.gz", ua: "Mozilla/5.0" },
   { url: "http://47.119.24.76:59093/playback.xml", ua: "Mozilla/5.0" },
-  { url: "https://epg.aptv.app/pp.xml.gz", ua: "AptvPlayer/1.2.5(iPhone)" },
-  { url: "https://epg.aptv.app/xml", ua: "AptvPlayer/1.2.5(iPhone)" }
+  { url: "https://epg.aptv.app/pp.xml.gz", ua: "AptvPlayer/1.2.5(iPhone)" }
+
 ];
 
 // --- 2. 读取并解析模板 ---
@@ -49,14 +75,17 @@ function matchChannel(epgName) {
   return null;
 }
 
-// --- 3. 动态生成有效日期范围 ---
+// --- 3. 动态生成有效日期范围 (加入控制开关) ---
 function getValidDates() {
   const dates = new Set();
   const now = new Date();
   const beijingTime = new Date(now.getTime() + (now.getTimezoneOffset() * 60000) + (8 * 3600000));
   
-  // 保留昨天、今天、明天、后天
-  for (let i = -1; i <= 2; i++) {
+  // 根据顶部开关决定是从昨天(-1)开始，还是从今天(0)开始
+  const startOffset = INCLUDE_YESTERDAY ? -1 : 0; 
+
+  // 保留到后天(2)
+  for (let i = startOffset; i <= 1; i++) {
     const d = new Date(beijingTime.getTime() + i * 86400000);
     const yyyy = d.getFullYear();
     const mm = String(d.getMonth() + 1).padStart(2, '0');
@@ -89,32 +118,38 @@ async function fetchAndDecompress(task) {
   }
 }
 
+// --- 清洗节目内容函数 (去广告 + 繁转简) ---
+function cleanContent(content) {
+  let cleaned = content;
+  // 1. 繁体转简体
+  cleaned = converter(cleaned);
+  // 2. 移除广告
+  for (const regex of AD_KEYWORDS) {
+    cleaned = cleaned.replace(regex, '');
+  }
+  return cleaned;
+}
+
 // --- 5. 核心合并与按天互补逻辑 ---
 async function main() {
   initTemplate();
   console.log(`当前允许保留的节目日期:`, Array.from(VALID_DATES));
 
-  const fulfilledChannels = new Set(); // 记录最终收录了哪些频道（用于生成 XML 头）
-  const fulfilledChannelDates = new Set(); // ★ 核心：记录“频道_日期”，如 "cctv1_20260306"
+  const fulfilledChannels = new Set(); 
+  const fulfilledChannelDates = new Set(); 
   const outputChannels = []; 
   const outputProgrammes = []; 
   
-  // 计算最完美的完成状态：所有频道 * 所有有效日期 都收集齐了
   const targetFulfillmentCount = templateChannels.size * VALID_DATES.size;
 
   for (const task of TASKS) {
-    // 如果所有的频道、所有的日期都拼齐了，直接提前结束！
-    if (fulfilledChannelDates.size >= targetFulfillmentCount) {
-      console.log("🎉 所有频道的所需日期均已完美补齐，跳过剩余源！");
-      break;
-    }
+    if (fulfilledChannelDates.size >= targetFulfillmentCount) break;
 
     const xmlText = await fetchAndDecompress(task);
     if (!xmlText) continue;
 
     const sourceIdMap = new Map(); 
 
-    // 先扫一遍当前源，把能匹配上的频道 ID 提取出来
     const channelRegex = /<channel\s+id="([^"]+)">([\s\S]*?)<\/channel>/g;
     for (const match of xmlText.matchAll(channelRegex)) {
       const originalId = match[1];
@@ -131,18 +166,17 @@ async function main() {
 
     let programmesAdded = 0;
     let programmesIgnored = 0; 
-    const datesAddedThisSource = new Set(); // 记录当前源贡献了哪些“频道_日期”
+    const datesAddedThisSource = new Set(); 
 
     const progRegex = /<programme\s+([^>]+)>([\s\S]*?)<\/programme>/g;
     for (const match of xmlText.matchAll(progRegex)) {
       const attrs = match[1];
-      const innerContent = match[2];
+      let innerContent = match[2];
       
       const startMatch = attrs.match(/start="(\d{8})/);
       if (!startMatch) continue;
       const progDate = startMatch[1]; 
 
-      // 1. 如果日期不在白名单，丢弃
       if (!VALID_DATES.has(progDate)) {
         programmesIgnored++;
         continue; 
@@ -154,16 +188,18 @@ async function main() {
         
       if (sourceIdMap.has(originalId)) {
         const matchedKey = sourceIdMap.get(originalId);
-        const fulfillmentKey = `${matchedKey}_${progDate}`; // 例如 "cctv1_20260306"
+        const fulfillmentKey = `${matchedKey}_${progDate}`; 
         
-        // 2. ★ 如果排在前面的高级源，已经提供了这个频道这一天的节目单，我们就跳过它，防止时间线重叠错乱
         if (fulfilledChannelDates.has(fulfillmentKey)) continue;
 
-        // 3. 这是一个我们需要的新数据！收下它！
         datesAddedThisSource.add(fulfillmentKey);
         const templateName = templateChannels.get(matchedKey);
         
         const newAttrs = attrs.replace(`channel="${originalId}"`, `channel="${templateName}"`);
+        
+        // ★ 对节目内容进行过滤：繁转简 + 剔除广告
+        innerContent = cleanContent(innerContent);
+        
         outputProgrammes.push(`  <programme ${newAttrs}>\n${innerContent}\n  </programme>`);
         
         fulfilledChannels.add(matchedKey);
@@ -171,22 +207,20 @@ async function main() {
       }
     }
 
-    // 当前源全部处理完后，把它贡献的日期锁定到全局记录里
     datesAddedThisSource.forEach(key => fulfilledChannelDates.add(key));
 
     console.log(` ✅ 提取 ${datesAddedThisSource.size} 组有效频道的单日数据，共 ${programmesAdded} 条节目 (过滤掉 ${programmesIgnored} 条)。`);
-    console.log(` 📊 当前总体收集进度: ${fulfilledChannelDates.size} / ${targetFulfillmentCount}`);
   }
 
-  // --- 6. 生成 XML 头部与尾部 ---
   for (const matchedKey of fulfilledChannels) {
     const templateName = templateChannels.get(matchedKey);
     outputChannels.push(`  <channel id="${templateName}">\n    <display-name lang="zh">${templateName}</display-name>\n  </channel>`);
   }
 
+  // ★ 作者名已替换为你专属的 aook
   const finalXml = `<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE tv SYSTEM "xmltv.dtd">
-<tv generator-info-name="GitHub Actions EPG Merge" generator-info-url="https://github.com">
+<tv generator-info-name="${AUTHOR_NAME}" generator-info-url="https://github.com">
 ${outputChannels.join('\n')}
 ${outputProgrammes.join('\n')}
 </tv>`;
