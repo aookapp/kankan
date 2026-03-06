@@ -136,7 +136,10 @@ async function main() {
   }
 
   // --- 6. 生成最终的 M3U 内容 ---
-  const epgUrlString = Array.from(globalEpgUrls).join(',');
+  // --- 6. 生成最终的 M3U 内容 ---
+  // 将收集到的 EPG 链接转为数组，并限制最多只保留前 3 个
+  const limitedEpgUrls = Array.from(globalEpgUrls).slice(0, 2);
+  const epgUrlString = limitedEpgUrls.join(',');
   const epgHeader = epgUrlString ? ` x-tvg-url="${epgUrlString}"` : '';
   
   // 头部加入 EPG 链接和更新时间
