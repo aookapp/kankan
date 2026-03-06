@@ -2,7 +2,7 @@ name: Update IPTV
 
 on:
   schedule:
-    - cron: '0 2 * * *' # 每天 UTC 时间 2 点（北京时间 10 点）执行
+    - cron: '0 21 * * *' # 每天 UTC 时间 2 点（北京时间 10 点）执行
   workflow_dispatch: # 允许你在网页上点按钮手动运行，方便调试
 
 jobs:
