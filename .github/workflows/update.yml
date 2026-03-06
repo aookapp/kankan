@@ -17,17 +17,24 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Run script
+      - name: Run script hn
         run: node index-hn.js
-      - name: Run script
+        
+      - name: Run script cn
         run: node index-cn.js
+
+      # 新增：运行我们刚写的 EPG 合并脚本
+      - name: Run EPG merge script
+        run: node epg-merge.js
 
       - name: 提交并推送到仓库
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          # 把两个生成的文件一起提交
-          git add kankan-hn.m3u kankan-cn.m3u 
+          
+          # 重点修改：把 M3U 列表和刚刚生成的 epg.xml 一起添加到提交队列
+          git add kankan-hn.m3u kankan-cn.m3u epg.xml
+          
           # 如果文件没有变化，commit 会报错退出，所以加了 || true 忽略报错
-          git commit -m "Auto update multiple lists" || true
+          git commit -m "Auto update IPTV and EPG" || true
           git push
