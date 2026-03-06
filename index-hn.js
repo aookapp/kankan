@@ -12,7 +12,7 @@ const TASKS = [
 ];
 
 // --- 2. 填写合并后的 EPG 链接 ---
-const CUSTOM_EPG = "https://hk.gh-proxy.org/https://github.com/aookapp/kankan/blob/main/epg.xml ";
+const CUSTOM_EPG = "https://hk.gh-proxy.org/https://raw.githubusercontent.com/aookapp/kankan/main/epg.xml";
 
 // --- 3. 读取外部的 template.txt 文件 ---
 const TEMPLATE = fs.readFileSync(path.join(__dirname, 'template.txt'), 'utf-8');
@@ -138,7 +138,7 @@ async function main() {
   // --- 6. 生成最终的 M3U 内容 ---
   // --- 6. 生成最终的 M3U 内容 ---
   // 将收集到的 EPG 链接转为数组，并限制最多只保留前 3 个
-  const limitedEpgUrls = Array.from(globalEpgUrls).slice(0, 2);
+  const limitedEpgUrls = Array.from(globalEpgUrls).slice(0, 1);
   const epgUrlString = limitedEpgUrls.join(',');
   const epgHeader = epgUrlString ? ` x-tvg-url="${epgUrlString}"` : '';
   
