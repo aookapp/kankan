@@ -1,5 +1,5 @@
 const fs = require('fs');
-
+const path = require('path'); // 新增引入 path 模块
 // --- 1. 你要抓取的源列表配置 ---
 const TASKS = [
  { url: "https://itv.5iclub.dpdns.org/MiGu.m3u", ua: "AptvPlayer/1.2.5(iPhone)" },
@@ -17,90 +17,11 @@ const TASKS = [
 // 留空则完全依赖自动从上述源文件中提取
 const CUSTOM_EPG = "https://live.lizanyang.top/e.xml,http://exml.51zmt.top:11111/download2.php?f=e.xml.gz";
 
-// --- 2. 你的自定义频道筛选模板 ---
-const TEMPLATE = `
-#央视
-CCTV1
-CCTV2
-CCTV3
-CCTV4
-CCTV5
-CCTV5+
-CCTV6
-CCTV7
-CCTV8
-CCTV9
-CCTV10
-CCTV11
-CCTV12
-CCTV13
-CCTV14
-CCTV15
-CCTV16
-CCTV17
-CCTV4K
-CCTV8K
-CCTV怀旧剧场
-CCTV第一剧场
-CCTV高尔夫球
-CCTV世界地理
-CCTV央视台球
-CCTV风云足球
-#卫视
-河南卫视
-北京卫视
-天津卫视
-河北卫视
-山西卫视
-江苏卫视
-浙江卫视
-安徽卫视
-江西卫视
-山东卫视
-湖南卫视
-海南卫视
-重庆卫视
-四川卫视
+// --- 2. 读取同目录下的 template.txt 文件 ---
+const TEMPLATE = fs.readFileSync(path.join(__dirname, 'template.txt'), 'utf-8');
 
-#数字
-CHC动作电影
-CHC家庭影院
-CHC影迷电影
-CINEMAX热门影院
-NEWTV动作电影
-#电影
-经典电影
-止戈电影
-神乐华语影院
-龙华电影
-功夫片
-电影怪兽
-电影谍战
-电影贺岁
-梁家辉
-周星星
-李连杰
-刘德华
-沈腾
-#戏曲
-大象睛彩中原
-大象戏曲
-大象移动戏曲
-#动画
-浙江少儿
-卡酷少儿
-金鹰卡通
-少儿动画
-动漫秀场
-嘉佳卡通
-优漫卡通频道
-新动漫
-银魂
-哆啦A梦
-海绵宝宝
-中华小当家
-青春动漫BESTTV
-`;
+// --- 3. 解析模板并构建数据结构 ---
+const templateChannels = new Map();
 
 // --- 3. 解析模板并构建数据结构 ---
 const templateChannels = new Map(); // 使用 Map 保持模板的插入顺序
