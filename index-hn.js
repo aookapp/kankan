@@ -1,5 +1,6 @@
 const fs = require('fs');
-const path = require('path'); // 新增引入 path 模块
+const path = require('path'); 
+
 // --- 1. 你要抓取的源列表配置 ---
 const TASKS = [
   { url: "https://live.lizanyang.top/hn.m3u", ua: "Mozilla/5.0" },
@@ -10,23 +11,19 @@ const TASKS = [
   { url: "https://raw.githubusercontent.com/Kimentanm/aptv/master/m3u/iptv.m3u", ua: "Mozilla/5.0" }
 ];
 
-// 如果你需要强行指定一个稳定的 EPG 节目单源，可以在这里填入，多个用逗号隔开
-// 留空则完全依赖自动从上述源文件中提取
+// --- 2. 填写合并后的 EPG 链接 ---
 const CUSTOM_EPG = "https://raw.githubusercontent.com/aookapp/kankan/main/epg.xml";
 
-
-// --- 2. 读取同目录下的 template.txt 文件 ---
+// --- 3. 读取外部的 template.txt 文件 ---
 const TEMPLATE = fs.readFileSync(path.join(__dirname, 'template.txt'), 'utf-8');
 
-// --- 3. 解析模板并构建数据结构 ---
-const templateChannels = new Map();
-
-// --- 3. 解析模板并构建数据结构 ---
-const templateChannels = new Map(); // 使用 Map 保持模板的插入顺序
+// --- 4. 解析模板并构建数据结构（整份文件这里只能出现一次！） ---
+const templateChannels = new Map(); 
 
 function initTemplate() {
   let currentGroup = '未分类';
   const lines = TEMPLATE.split('\n');
+// ... 后面原封不动保留
   
   for (let line of lines) {
     line = line.trim();
