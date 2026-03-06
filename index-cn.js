@@ -16,7 +16,7 @@ const TASKS = [
 // 如果你需要强行指定一个稳定的 EPG 节目单源，可以在这里填入，多个用逗号隔开
 // 留空则完全依赖自动从上述源文件中提取
 // --- 2. 填写合并后的 EPG 链接 ---
-const CUSTOM_EPG = "https://hk.gh-proxy.org/https://github.com/aookapp/kankan/blob/main/epg.xml,https://raw.githubusercontent.com/aookapp/kankan/main/epg.xml";
+const CUSTOM_EPG = "https://hk.gh-proxy.org/https://raw.githubusercontent.com/aookapp/kankan/main/epg.xml";
 
 //
 
