@@ -12,7 +12,7 @@ const TASKS = [
 ];
 
 // --- 2. 填写合并后的 EPG 链接 ---
-const CUSTOM_EPG = "https://hk.gh-proxy.org/https://github.com/aookapp/kankan/blob/main/epg.xml";
+const CUSTOM_EPG = "https://hk.gh-proxy.org/https://github.com/aookapp/kankan/blob/main/epg.xml,https://github.com/aookapp/kankan/blob/main/epg.xml ";
 
 // --- 3. 读取外部的 template.txt 文件 ---
 const TEMPLATE = fs.readFileSync(path.join(__dirname, 'template.txt'), 'utf-8');
