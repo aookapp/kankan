@@ -17,6 +17,11 @@ jobs:
         with:
           node-version: '20'
 
+
+       # ---- 新增这一步：安装简繁转换核心库 ----
+      - name: Install dependencies
+        run: npm install opencc-js
+
       - name: Run script hn
         run: node index-hn.js
         
