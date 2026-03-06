@@ -140,9 +140,9 @@ async function main() {
     }
   }
 
-  // --- 6. 生成最终的 M3U 内容 ---
-  const epgUrlString = Array.from(globalEpgUrls).join(',');
-  const epgHeader = epgUrlString ? ` x-tvg-url="${epgUrlString}"` : '';
+ // --- 6. 生成最终的 M3U 内容 ---
+  // 直接强制使用你在代码最顶部填写的 CUSTOM_EPG，无视别人源里的垃圾 EPG
+  const epgHeader = CUSTOM_EPG ? ` x-tvg-url="${CUSTOM_EPG}"` : '';
   
   // 头部加入 EPG 链接和更新时间
   const now = new Date().toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' });
