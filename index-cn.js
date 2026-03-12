@@ -3,6 +3,7 @@ const path = require('path'); // 新增引入 path 模块
 // --- 1. 你要抓取的源列表配置 ---
 const TASKS = [
  { url: "https://itv.5iclub.dpdns.org/MiGu.m3u", ua: "AptvPlayer/1.2.5(iPhone)" },
+ { url: "https://raw.githubusercontent.com/develop202/migu_video/refs/heads/main/interface.txt", ua: "Mozilla/5.0" },
  { url: "https://raw.githubusercontent.com/Kimentanm/aptv/master/m3u/iptv.m3u", ua: "Mozilla/5.0" },
  { url: "https://m.im5k.fun/mcp.m3u", ua: "AptvPlayer/1.2.5(iPhone)" },
  { url: "https://im5k.fun/iptv.m3u", ua: "AptvPlayer/1.2.5(iPhone)" },
