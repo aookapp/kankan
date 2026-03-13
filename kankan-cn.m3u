@@ -1,7 +1,9 @@
 #EXTM3U x-tvg-url="https://hk.gh-proxy.org/https://raw.githubusercontent.com/aookapp/kankan/main/epg.xml"
-# 自动更新时间: 2026/3/13 08:28:48
+# 自动更新时间: 2026/3/14 07:33:08
 #EXTINF:-1 tvg-id="CCTV1综合" tvg-name="CCTV1" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/2201/057/821/202204010054_1626677671392_H32_1080.webp",CCTV1
 http://47.119.24.76:59093/608807420
+#EXTINF:-1 tvg-id="CCTV1综合" tvg-name="CCTV1" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/2201/057/821/202204010054_1626677671392_H32_1080.webp",CCTV1
+http://pull-hls-f11.douyincdn.com/media/stream-407242316492309164.m3u8?arch_hrchy=w1&exp_hrchy=w1&expire=1774048226&major_anchor_level=common&sign=f1780d556cc63c46aedaaa0e0e4372ed&t_id=037-202603140710257A3F55DD96CDE0F72CA5-CmNcZh
 #EXTINF:-1 tvg-id="CCTV1综合" tvg-name="CCTV1" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/2201/057/821/202204010054_1626677671392_H32_1080.webp",CCTV1
 http://play.kankanlive.com/live/1698234869325962.m3u8
 #EXTINF:-1 tvg-id="CCTV1综合" tvg-name="CCTV1" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/2201/057/821/202204010054_1626677671392_H32_1080.webp",CCTV1
@@ -17,8 +19,6 @@ http://47.119.24.76:59093/631780532
 #EXTINF:-1 tvg-id="CCTV2财经" tvg-name="CCTV2" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5500/346/945/202205311432_1626678578843_H32_1080.webp",CCTV2
 http://pull-hls-f11.douyincdn.com/media/stream-118899562654991020.m3u8?arch_hrchy=w1&exp_hrchy=w1&expire=1773806307&major_anchor_level=common&sign=26df1db545d069eb52f37cc9e31f4d3c&t_id=037-2026031111582683916CAD1DF66CD09662-UtkRAa
 #EXTINF:-1 tvg-id="CCTV2财经" tvg-name="CCTV2" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5500/346/945/202205311432_1626678578843_H32_1080.webp",CCTV2
-http://117.72.45.109:3577/631780532?reptoken=R/mg&auth=
-#EXTINF:-1 tvg-id="CCTV2财经" tvg-name="CCTV2" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5500/346/945/202205311432_1626678578843_H32_1080.webp",CCTV2
 http://101.35.240.114:88/live.php?id=CCTV2
 #EXTINF:-1 tvg-id="CCTV2财经" tvg-name="CCTV2" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5500/346/945/202205311432_1626678578843_H32_1080.webp",CCTV2
 http://175.154.151.98:808/hls/2/index.m3u8
@@ -30,8 +30,6 @@ http://123.175.209.52:9003/hls/2/index.m3u8
 http://47.119.24.76:59093/624878271
 #EXTINF:-1 tvg-id="CCTV3综艺" tvg-name="CCTV3" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5500/212/864/202204010055_1626679244629_H32_1080.webp",CCTV3
 http://38.75.136.137:98/gslb/dsdqpub/cctv3hd.m3u8?auth=testpub
-#EXTINF:-1 tvg-id="CCTV3综艺" tvg-name="CCTV3" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5500/212/864/202204010055_1626679244629_H32_1080.webp",CCTV3
-http://117.72.45.109:3577/624878271?reptoken=R/mg&auth=
 #EXTINF:-1 tvg-id="CCTV3综艺" tvg-name="CCTV3" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5500/212/864/202204010055_1626679244629_H32_1080.webp",CCTV3
 http://101.35.240.114:88/live.php?id=CCTV3
 #EXTINF:-1 tvg-id="CCTV3综艺" tvg-name="CCTV3" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5500/212/864/202204010055_1626679244629_H32_1080.webp",CCTV3
@@ -56,10 +54,6 @@ http://119.123.176.249:8086/hls/5/index.m3u8
 http://47.119.24.76:59093/641886683
 #EXTINF:-1 tvg-id="CCTV5体育" tvg-name="CCTV5" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5500/516/171/202204010048_1626679603804_H32_1080.webp",CCTV5
 http://47.119.24.76:59093/641886773
-#EXTINF:-1 tvg-id="CCTV5体育" tvg-name="CCTV5" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5500/516/171/202204010048_1626679603804_H32_1080.webp",CCTV5
-http://117.72.45.109:3577/641886773?reptoken=R/mg&auth=
-#EXTINF:-1 tvg-id="CCTV5体育" tvg-name="CCTV5" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5500/516/171/202204010048_1626679603804_H32_1080.webp",CCTV5
-http://117.72.45.109:3577/641886683?reptoken=R/mg&auth=
 #EXTINF:-1 tvg-id="CCTV5体育" tvg-name="CCTV5" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5500/516/171/202204010048_1626679603804_H32_1080.webp",CCTV5
 http://101.35.240.114:88/live.php?id=CCTV5
 #EXTINF:-1 tvg-id="CCTV5体育" tvg-name="CCTV5" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5500/516/171/202204010048_1626679603804_H32_1080.webp",CCTV5
@@ -91,8 +85,6 @@ http://123.175.209.52:9003/hls/7/index.m3u8
 #EXTINF:-1 tvg-id="CCTV7国防军事" tvg-name="CCTV7" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5501/083/622/202204010054_1626680119210_H32_1080.webp",CCTV7
 http://47.119.24.76:59093/673168121
 #EXTINF:-1 tvg-id="CCTV7国防军事" tvg-name="CCTV7" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5501/083/622/202204010054_1626680119210_H32_1080.webp",CCTV7
-http://117.72.45.109:3577/673168121?reptoken=R/mg&auth=
-#EXTINF:-1 tvg-id="CCTV7国防军事" tvg-name="CCTV7" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5501/083/622/202204010054_1626680119210_H32_1080.webp",CCTV7
 http://101.35.240.114:88/live.php?id=CCTV7
 #EXTINF:-1 tvg-id="CCTV7国防军事" tvg-name="CCTV7" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5501/083/622/202204010054_1626680119210_H32_1080.webp",CCTV7
 http://175.154.151.98:808/hls/8/index.m3u8
@@ -123,8 +115,6 @@ http://123.175.209.52:9003/hls/10/index.m3u8
 #EXTINF:-1 tvg-id="CCTV10科教" tvg-name="CCTV10" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5500/212/874/202204010054_1626677767922_H32_1080.webp",CCTV10
 http://47.119.24.76:59093/624878405
 #EXTINF:-1 tvg-id="CCTV10科教" tvg-name="CCTV10" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5500/212/874/202204010054_1626677767922_H32_1080.webp",CCTV10
-http://117.72.45.109:3577/624878405?reptoken=R/mg&auth=
-#EXTINF:-1 tvg-id="CCTV10科教" tvg-name="CCTV10" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5500/212/874/202204010054_1626677767922_H32_1080.webp",CCTV10
 http://101.35.240.114:88/live.php?id=CCTV10
 #EXTINF:-1 tvg-id="CCTV10科教" tvg-name="CCTV10" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5500/212/874/202204010054_1626677767922_H32_1080.webp",CCTV10
 http://175.154.151.98:808/hls/11/index.m3u8
@@ -145,8 +135,6 @@ http://123.175.209.52:9003/hls/12/index.m3u8
 #EXTINF:-1 tvg-id="CCTV12社会与法" tvg-name="CCTV12" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5501/083/627/202204010053_1626678108629_H32_1080.webp",CCTV12
 http://47.119.24.76:59093/673168185
 #EXTINF:-1 tvg-id="CCTV12社会与法" tvg-name="CCTV12" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5501/083/627/202204010053_1626678108629_H32_1080.webp",CCTV12
-http://117.72.45.109:3577/673168185?reptoken=R/mg&auth=
-#EXTINF:-1 tvg-id="CCTV12社会与法" tvg-name="CCTV12" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5501/083/627/202204010053_1626678108629_H32_1080.webp",CCTV12
 http://101.35.240.114:88/live.php?id=CCTV12
 #EXTINF:-1 tvg-id="CCTV12社会与法" tvg-name="CCTV12" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5501/083/627/202204010053_1626678108629_H32_1080.webp",CCTV12
 http://175.154.151.98:808/hls/13/index.m3u8
@@ -158,8 +146,6 @@ http://123.175.209.52:9003/hls/13/index.m3u8
 http://47.119.24.76:59093/608807423
 #EXTINF:-1 tvg-id="CCTV13新闻" tvg-name="CCTV13" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/2202/208/864/202204010051_2202208864_H32_1080.webp",CCTV13
 http://pull-hls-f11.douyincdn.com/media/stream-695465280141001388.m3u8?arch_hrchy=w1&exp_hrchy=w1&expire=1773914533&major_anchor_level=common&sign=00e2ac87499b260c729b1f091036f02a&t_id=037-20260312180213C90050E21D269F317686-un9xrW
-#EXTINF:-1 tvg-id="CCTV13新闻" tvg-name="CCTV13" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/2202/208/864/202204010051_2202208864_H32_1080.webp",CCTV13
-http://117.72.45.109:3577/608807423?reptoken=R/mg&auth=
 #EXTINF:-1 tvg-id="CCTV13新闻" tvg-name="CCTV13" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/2202/208/864/202204010051_2202208864_H32_1080.webp",CCTV13
 http://101.35.240.114:88/live.php?id=CCTV13
 #EXTINF:-1 tvg-id="CCTV13新闻" tvg-name="CCTV13" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/2202/208/864/202204010051_2202208864_H32_1080.webp",CCTV13
@@ -173,8 +159,6 @@ https://cdn3.163189.xyz/163189/cctv13
 #EXTINF:-1 tvg-id="CCTV14少儿" tvg-name="CCTV14" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5500/212/875/202204010054_1626678147073_H32_1080.webp",CCTV14
 http://47.119.24.76:59093/624878440
 #EXTINF:-1 tvg-id="CCTV14少儿" tvg-name="CCTV14" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5500/212/875/202204010054_1626678147073_H32_1080.webp",CCTV14
-http://117.72.45.109:3577/624878440?reptoken=R/mg&auth=
-#EXTINF:-1 tvg-id="CCTV14少儿" tvg-name="CCTV14" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5500/212/875/202204010054_1626678147073_H32_1080.webp",CCTV14
 http://101.35.240.114:88/live.php?id=CCTV14
 #EXTINF:-1 tvg-id="CCTV14少儿" tvg-name="CCTV14" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5500/212/875/202204010054_1626678147073_H32_1080.webp",CCTV14
 http://175.154.151.98:808/hls/15/index.m3u8
@@ -182,8 +166,6 @@ http://175.154.151.98:808/hls/15/index.m3u8
 http://119.123.176.249:8086/hls/15/index.m3u8
 #EXTINF:-1 tvg-id="CCTV15音乐" tvg-name="CCTV15" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5501/083/628/202204010054_1626678245130_H32_1080.webp",CCTV15
 http://47.119.24.76:59093/673168223
-#EXTINF:-1 tvg-id="CCTV15音乐" tvg-name="CCTV15" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5501/083/628/202204010054_1626678245130_H32_1080.webp",CCTV15
-http://117.72.45.109:3577/673168223?reptoken=R/mg&auth=
 #EXTINF:-1 tvg-id="CCTV15音乐" tvg-name="CCTV15" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5501/083/628/202204010054_1626678245130_H32_1080.webp",CCTV15
 http://101.35.240.114:88/live.php?id=CCTV15
 #EXTINF:-1 tvg-id="CCTV15音乐" tvg-name="CCTV15" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5501/083/628/202204010054_1626678245130_H32_1080.webp",CCTV15
@@ -379,8 +361,6 @@ http://183.207.248.71/gitv/live1/AHWS/AHWS
 #EXTINF:-1 tvg-id="江西卫视" tvg-name="江西卫视" group-title="卫视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5910/021/492/202303201551_1658134104486_H32_1080.webp",江西卫视
 http://47.119.24.76:59093/783847495
 #EXTINF:-1 tvg-id="江西卫视" tvg-name="江西卫视" group-title="卫视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5910/021/492/202303201551_1658134104486_H32_1080.webp",江西卫视
-http://117.72.45.109:3577/783847495?reptoken=R/mg&auth=
-#EXTINF:-1 tvg-id="江西卫视" tvg-name="江西卫视" group-title="卫视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5910/021/492/202303201551_1658134104486_H32_1080.webp",江西卫视
 http://101.35.240.114:88/live.php?id=江西卫视
 #EXTINF:-1 tvg-id="江西卫视" tvg-name="江西卫视" group-title="卫视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5910/021/492/202303201551_1658134104486_H32_1080.webp",江西卫视
 http://113.26.251.182:8009/hls/49/index.m3u8
@@ -466,8 +446,6 @@ http://175.154.151.98:808/hls/29/index.m3u8
 http://119.123.176.249:8086/hls/55/index.m3u8
 #EXTINF:-1 tvg-id="海南卫视" tvg-name="海南卫视" group-title="卫视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5910/022/165/202501231715_1658138869802_H32_1080.webp",海南卫视
 http://47.119.24.76:59093/947472502
-#EXTINF:-1 tvg-id="海南卫视" tvg-name="海南卫视" group-title="卫视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5910/022/165/202501231715_1658138869802_H32_1080.webp",海南卫视
-http://117.72.45.109:3577/947472502?reptoken=R/mg&auth=
 #EXTINF:-1 tvg-id="海南卫视" tvg-name="海南卫视" group-title="卫视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5910/022/165/202501231715_1658138869802_H32_1080.webp",海南卫视
 http://101.35.240.114:88/live.php?id=海南卫视
 #EXTINF:-1 tvg-id="海南卫视" tvg-name="海南卫视" group-title="卫视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5910/022/165/202501231715_1658138869802_H32_1080.webp",海南卫视
