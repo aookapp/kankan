@@ -186,7 +186,6 @@ async function main() {
   }
 
   // 写入文件
-  fs.writeFileSync('kankan-hn.m3u', output);
   fs.writeFileSync('hn.m3u', output);
   
   console.log(`\n🎉 处理完成！`);
