@@ -52,7 +52,7 @@ function initTemplate() {
   const lines = fs.readFileSync(TEMPLATE_PATH, 'utf-8').split('\n');
   for (let line of lines) {
     line = line.trim();
-    if (!line || line.startsWith('#')) continue;
+    if (!line || line.startsWith('#') || line.startsWith('//')) continue;
     let key = line.toLowerCase().replace(/[-_ 　]/g, '');
     templateChannels.set(key, line);
   }
