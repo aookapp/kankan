@@ -23,7 +23,7 @@
 * `index-hn.js` / `index-cn.js` - 直播源 (M3U) 抓取与生成脚本。负责去重、匹配频道，并强制绑定专属 EPG。
 * `epg-merge.js` - EPG 节目单超级聚合脚本。负责解压 `.gz` 源、按天过滤、去广告、简繁转换以及精准合并。
 * `.github/workflows/update.yml` - 自动化工作流配置文件。
-* `www.m3u` - 自定义频道
+* `ss.m3u` - 自定义频道
 
 ## 🚀 部署与使用指南
 
