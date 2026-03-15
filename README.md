@@ -38,8 +38,7 @@
 ### 2. 获取订阅链接 (请使用 Raw 链接)
 运行成功后，仓库会生成对应的文件。请将以下链接填入你的播放器（如 APtv, TiviMate, Kankan 等）：
 
-* **主力直播源**：`https://raw.githubusercontent.com/你的用户名/你的仓库名/main/kankan-hn.m3u`
-* **备用/短链直播源**：`https://raw.githubusercontent.com/你的用户名/你的仓库名/main/hn.m3u`
+* **直播源**：`https://raw.githubusercontent.com/你的用户名/你的仓库名/main/hn.m3u`
 
 > 💡 *提示：节目单 `epg.xml` 已内置在 M3U 头部，播放器会自动加载，无需另外配置。*
 
