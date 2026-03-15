@@ -1,2 +1,60 @@
 #EXTM3U
-# 自动更新时间: 2026/3/15 18:23:29
+# 自动更新时间: 2026/3/15 18:31:30
+#EXTINF:-1 tvg-name="CHC动作电影" group-title="数字",CHC动作电影
+http://m.061899.xyz/mg/dzdy
+#EXTINF:-1 tvg-name="CHC动作电影" group-title="数字",CHC动作电影
+http://go.bkpcp.top/mg/dzdy
+#EXTINF:-1 tvg-name="CHC动作电影" group-title="数字",CHC动作电影
+http://106.53.99.30/tv/hot.php?id=dzdy
+#EXTINF:-1 tvg-name="CHC动作电影" group-title="数字",CHC动作电影
+http://38.75.136.137:98/gslb/dsdqpub/chcdz.m3u8?auth=testpub
+#EXTINF:-1 tvg-name="CHC动作电影" group-title="数字",CHC动作电影
+rtsp://111.48.34.138:1554/170000004112/99180001000000050000000000000523
+#EXTINF:-1 tvg-name="CHC动作电影" group-title="数字",CHC动作电影
+http://61.184.46.85:85/tsfile/live/1024_1.m3u8?key=txiptv&playlive=1&authid=0
+#EXTINF:-1 tvg-name="CHC家庭影院" group-title="数字",CHC家庭影院
+http://m.061899.xyz/mg/jtyy
+#EXTINF:-1 tvg-name="CHC家庭影院" group-title="数字",CHC家庭影院
+http://go.bkpcp.top/mg/jtyy
+#EXTINF:-1 tvg-name="CHC家庭影院" group-title="数字",CHC家庭影院
+http://106.53.99.30/tv/hot.php?id=jtyy
+#EXTINF:-1 tvg-name="CHC家庭影院" group-title="数字",CHC家庭影院
+http://38.75.136.137:98/gslb/dsdqpub/chcjt.m3u8?auth=testpub
+#EXTINF:-1 tvg-name="CHC家庭影院" group-title="数字",CHC家庭影院
+rtsp://111.48.34.138:1554/170000004112/99180001000000050000000000000522
+#EXTINF:-1 tvg-name="CHC家庭影院" group-title="数字",CHC家庭影院
+http://61.184.46.85:85/tsfile/live/1023_1.m3u8?key=txiptv&playlive=1&authid=0
+#EXTINF:-1 tvg-name="CHC影迷电影" group-title="数字",CHC影迷电影
+http://m.061899.xyz/mg/ymdy
+#EXTINF:-1 tvg-name="CHC影迷电影" group-title="数字",CHC影迷电影
+http://go.bkpcp.top/mg/ymdy
+#EXTINF:-1 tvg-name="CHC影迷电影" group-title="数字",CHC影迷电影
+http://106.53.99.30/tv/hot.php?id=ymdy
+#EXTINF:-1 tvg-name="CHC影迷电影" group-title="数字",CHC影迷电影
+http://38.75.136.137:98/gslb/dsdqpub/chchd.m3u8?auth=testpub
+#EXTINF:-1 tvg-name="龙华电影" group-title="电影",龙华电影
+http://iptv.4666888.xyz/iptv2A.php?id=45
+#EXTINF:-1 tvg-name="龙华电影" group-title="电影",龙华电影
+http://cdn8.163189.xyz/163189/lhdy
+#EXTINF:-1 tvg-name="浙江少儿" group-title="动画",浙江少儿
+http://ali-xwl.cztv.com/live/channel081080Plxw.m3u8
+#EXTINF:-1 tvg-name="浙江少儿" group-title="动画",浙江少儿
+https://ali-xwl.cztv.com/live/channel081080Pnew.m3u8
+#EXTINF:-1 tvg-name="浙江少儿" group-title="动画",浙江少儿
+https://ali-xwl.cztv.com/live/channel08720Pnew.m3u8
+#EXTINF:-1 tvg-name="卡酷少儿" group-title="动画",卡酷少儿
+http://61.184.46.85:85/tsfile/live/1027_1.m3u8?key=txiptv&playlive=1&authid=0
+#EXTINF:-1 tvg-name="金鹰卡通" group-title="动画",金鹰卡通
+http://61.184.46.85:85/tsfile/live/1028_1.m3u8?key=txiptv&playlive=1&authid=0
+#EXTINF:-1 tvg-name="金鹰卡通" group-title="动画",金鹰卡通
+http://1.31.14.70:54321/hls/20/index.m3u8
+#EXTINF:-1 tvg-name="动漫秀场" group-title="动画",动漫秀场
+http://115.190.252.60:20508/se.php?id=dmxc
+#EXTINF:-1 tvg-name="嘉佳卡通" group-title="动画",嘉佳卡通
+https://gd.luzong.cc.cd/jjkt
+#EXTINF:-1 tvg-name="嘉佳卡通" group-title="动画",嘉佳卡通
+http://115.190.252.60:20508/se.php?id=jjkt2
+#EXTINF:-1 tvg-name="哆啦A梦" group-title="动画",哆啦A梦
+https://live.ottiptv.cc/huya/11601963
+#EXTINF:-1 tvg-name="中华小当家" group-title="动画",中华小当家
+https://live.ottiptv.cc/huya/11342413
