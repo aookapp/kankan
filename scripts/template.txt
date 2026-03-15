@@ -19,12 +19,12 @@ CCTV16
 CCTV17
 CCTV4K
 CCTV8K
-CCTV怀旧剧场
-CCTV第一剧场
-CCTV高尔夫球
-CCTV世界地理
-CCTV央视台球
-CCTV风云足球
+// CCTV怀旧剧场
+// CCTV第一剧场
+// CCTV高尔夫球
+// CCTV世界地理
+// CCTV央视台球
+// CCTV风云足球
 
 #卫视
 河南卫视
@@ -46,8 +46,8 @@ CCTV风云足球
 CHC动作电影
 CHC家庭影院
 CHC影迷电影
-CINEMAX热门影院
-NEWTV动作电影
+// CINEMAX热门影院
+// NEWTV动作电影
 
 #电影
 经典电影
