@@ -15,10 +15,16 @@ const TASKS = [
 // --- 2. 填写合并后的 EPG 链接 ---
 const CUSTOM_EPG = "https://kan.935999.xyz/epg.xml";
 
-// --- 3. 读取外部的 template.txt 文件 ---
+// --- 3. ★ 新增：频道别名与智能合并规则 ★ ---
+// 左边是你 template.txt 里的标准名字，右边是可能抓到的各种马甲/别名
+// 以后发现新的叫法，随时往右边的数组里加！
+// --- 3. 引入独立的频道别名配置 ---
+const ALIAS_MAP = require('./alias.js');
+
+// --- 4. 读取外部的 template.txt 文件 ---
 const TEMPLATE = fs.readFileSync(path.join(__dirname, 'template.txt'), 'utf-8');
 
-// --- 4. 解析模板并构建数据结构 ---
+// --- 5. 解析模板并构建数据结构 ---
 const templateChannels = new Map(); 
 
 function initTemplate() {
@@ -27,29 +33,43 @@ function initTemplate() {
   
   for (let line of lines) {
     line = line.trim();
-   // ★ 新增：遇到空行，或者以 // 开头的行，直接无视并跳过
+    // 遇到空行或者以 // 开头的行直接跳过，实现完美隐藏开关
     if (!line || line.startsWith('//')) continue;
     
     if (line.startsWith('#')) {
-      currentGroup = line.substring(1).trim(); // 获取分组名
+      currentGroup = line.substring(1).trim(); 
     } else {
-      // 将频道名标准化（去空格、短横线，转小写），作为匹配用的唯一键值
       let key = line.toLowerCase().replace(/[-_ 　]/g, '');
       templateChannels.set(key, { 
-        name: line,         // 你模板里原本的名字
-        group: currentGroup,// 所属分类
-        id: '',             // 预留 EPG 频道 ID 位置
-        logo: '',           // 预留台标位置
-        urls: new Set()     // 使用 Set 存储该频道对应的所有去重播放链接
+        name: line,         
+        group: currentGroup,
+        id: '',             
+        logo: '',           
+        urls: new Set()     
       });
     }
   }
 }
 
-// --- 5. 智能匹配源频道名到模板频道名 ---
+// --- 6. 智能匹配源频道名到模板频道名 ---
 function matchChannel(m3uChannelName) {
   let clean = m3uChannelName.toLowerCase().replace(/[-_ 　]/g, '');
   
+  // ★ 新增逻辑：别名拦截与强行归类 ★
+  for (const [standard, aliases] of Object.entries(ALIAS_MAP)) {
+    // 1. 如果抓到的名字包含了标准名（比如"周星驰电影"包含了"周星驰"），直接归为标准名
+    if (clean.includes(standard)) {
+      clean = standard;
+      break;
+    }
+    // 2. 如果抓到的名字匹配到了右边的别名（比如"周星星"），强行转化为标准名
+    if (aliases.some(alias => clean.includes(alias))) {
+      clean = standard;
+      break;
+    }
+  }
+
+  // 检查归类后的名字是否在你的模板里
   if (templateChannels.has(clean)) return clean;
   
   let cleanNoSuffix = clean.replace(/hd|fhd|1080p|1080i|720p|超清|高清/g, '');
@@ -66,12 +86,11 @@ function matchChannel(m3uChannelName) {
   return null;
 }
 
-// --- 6. 核心抓取与合并逻辑 (支持 M3U + TXT 双引擎) ---
+// --- 7. 核心抓取与合并逻辑 (支持 M3U + TXT 双引擎) ---
 async function main() {
   initTemplate();
-  const globalEpgUrls = new Set(); // 存储所有抓取到的 EPG 链接
+  const globalEpgUrls = new Set(); 
   
-  // 加入自定义 EPG
   if (CUSTOM_EPG) {
     CUSTOM_EPG.split(',').forEach(url => globalEpgUrls.add(url.trim()));
   }
@@ -80,10 +99,7 @@ async function main() {
     console.log(`正在抓取: ${task.url}`);
     try {
       const res = await fetch(task.url, { headers: { "User-Agent": task.ua } });
-      if (!res.ok) {
-        console.error(`抓取失败: 状态码 ${res.status}`);
-        continue;
-      }
+      if (!res.ok) continue;
       
       const text = await res.text();
       const lines = text.split('\n');
@@ -95,18 +111,12 @@ async function main() {
         line = line.trim();
         if (!line) continue;
         
-        // 提取原文件的全局 EPG 链接
         if (line.startsWith('#EXTM3U')) {
           let epgMatch = line.match(/x-tvg-url="([^"]+)"/i);
-          if (epgMatch) {
-            epgMatch[1].split(',').forEach(url => globalEpgUrls.add(url.trim()));
-          }
+          if (epgMatch) epgMatch[1].split(',').forEach(url => globalEpgUrls.add(url.trim()));
           continue;
         }
         
-        // ==========================================
-        // 模式 1: 解析标准 M3U 格式
-        // ==========================================
         if (line.startsWith('#EXTINF')) {
           currentExtInf = line;
           let m3uName = line.substring(line.lastIndexOf(',') + 1).trim();
@@ -114,12 +124,8 @@ async function main() {
           
           if (matchedKey) {
             let channelObj = templateChannels.get(matchedKey);
-            
-            // 提取台标
             let logoMatch = currentExtInf.match(/tvg-logo="([^"]+)"/i);
             if (logoMatch && !channelObj.logo) channelObj.logo = logoMatch[1];
-            
-            // 提取 EPG 对应的 tvg-id
             let idMatch = currentExtInf.match(/tvg-id="([^"]+)"/i);
             if (idMatch && !channelObj.id) channelObj.id = idMatch[1];
           }
@@ -129,28 +135,24 @@ async function main() {
           currentExtInf = '';
           matchedKey = null;
         }
-        
-        // ==========================================
-        // 模式 2: 解析 TVBox / TXT 格式 (例如 interface.txt)
-        // ==========================================
         else if (line.includes(',') && !line.startsWith('#EXTINF')) {
           let parts = line.split(',');
           if (parts.length >= 2) {
             let txtName = parts[0].trim();
             let txtUrls = parts[1].trim();
             
-            if (txtUrls === '#genre#') continue; // 跳过分类标签
+            if (txtUrls === '#genre#') continue; 
             
             matchedKey = matchChannel(txtName);
             if (matchedKey) {
-              let urlArray = txtUrls.split('#'); // 切割同行多个源
+              let urlArray = txtUrls.split('#'); 
               for (let u of urlArray) {
-                let pureUrl = u.split('$')[0].trim(); // 去除 $ 后面的网络备注
+                let pureUrl = u.split('$')[0].trim(); 
                 if (pureUrl.startsWith('http') || pureUrl.startsWith('rtmp') || pureUrl.startsWith('rtsp')) {
                   templateChannels.get(matchedKey).urls.add(pureUrl);
                 }
               }
-              matchedKey = null; // 重置，避免影响下一行
+              matchedKey = null; 
             }
           }
         }
@@ -160,13 +162,11 @@ async function main() {
     }
   }
 
-  // --- 7. 生成最终的 M3U 内容 ---
-  // 将收集到的 EPG 链接转为数组，并限制最多只保留前 1 个
+  // --- 8. 生成最终的 M3U 内容 ---
   const limitedEpgUrls = Array.from(globalEpgUrls).slice(0, 1);
   const epgUrlString = limitedEpgUrls.join(',');
   const epgHeader = epgUrlString ? ` x-tvg-url="${epgUrlString}"` : '';
   
-  // 头部加入 EPG 链接和更新时间
   const now = new Date().toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' });
   let output = `#EXTM3U${epgHeader}\n# 自动更新时间: ${now}\n`;
   
@@ -177,8 +177,11 @@ async function main() {
     if (info.urls.size === 0) continue;
     
     totalChannels++;
-    for (const url of info.urls) {
-      // 组装带 id 和 logo 的扩展属性标签
+    
+    // ★ 新增逻辑：将该频道的所有去重链接转为数组，并严格切出前 5 个！★
+    const limitedUrls = Array.from(info.urls).slice(0, 5);
+    
+    for (const url of limitedUrls) {
       let idStr = info.id ? ` tvg-id="${info.id}"` : '';
       let logoStr = info.logo ? ` tvg-logo="${info.logo}"` : '';
       
@@ -189,11 +192,12 @@ async function main() {
   }
 
   // 写入文件
+  fs.writeFileSync('kankan-hn.m3u', output);
   fs.writeFileSync('hn.m3u', output);
   
   console.log(`\n🎉 处理完成！`);
   console.log(`收集到了 ${globalEpgUrls.size} 个 EPG 节目单链接。`);
-  console.log(`共匹配到 ${totalChannels} 个模板频道，生成了 ${totalLinks} 条播放链接。`);
+  console.log(`共匹配到 ${totalChannels} 个模板频道，生成了 ${totalLinks} 条播放链接 (每个频道最多保留 5 个)。`);
 }
 
 main();
