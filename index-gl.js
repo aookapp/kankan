@@ -55,31 +55,23 @@ function matchChannel(m3uChannelName) {
 
 // --- ⚡ 新增：单条链接测速与有效性检测函数 ---
 async function checkUrlAlive(url) {
-  // 过滤掉非 http(s) 开头的本地或错误链接
   if (!url.startsWith('http')) return false; 
-  
   try {
     const controller = new AbortController();
-    // 设定 2500 毫秒（2.5秒）超时限制。连不上的直接判定死亡，越短越严格
-    const timeoutId = setTimeout(() => controller.abort(), 2500); 
+    const timeoutId = setTimeout(() => controller.abort(), 5000); // 增加到 5 秒
 
-    const res = await fetch(url, { 
-      method: 'GET', // 发送真实请求，但我们只要请求头
-      signal: controller.signal,
-      headers: { "User-Agent": "VLC/3.0.16 LibVLC/3.0.16" } // 伪装成播放器
-    });
-
+    const res = await fetch(url, { signal: controller.signal });
     clearTimeout(timeoutId);
 
-    // ★ 核心技巧：一旦服务器响应了状态码（比如200），立刻切断下载！
-    // 这样不用真的去下载视频流，极大地节省了 GitHub Action 的流量和运行时间。
-    if (res.body && res.body.cancel) {
-      await res.body.cancel();
-    }
+    // 如果返回 404，那一定是挂了，删掉
+    if (res.status === 404) return false;
 
-    return res.ok; // 只有返回 200 OK 等成功状态码，才算存活
+    // 如果是超时或者其他错误，在国外测不准的情况下，我们选择“宁可信其有”
+    return true; 
   } catch (err) {
-    return false; // 超时或拒绝连接，视为死链
+    // 捕获到超时错误（AbortError），返回 true 给予留任机会
+    if (err.name === 'AbortError') return true; 
+    return false;
   }
 }
 
