@@ -6,7 +6,7 @@ const TASKS = [
   { url: "https://live.lizanyang.top/hn.m3u", ua: "Mozilla/5.0" },
   { url: "https://itv.aptv.app/china-iptv/hnyd.m3u", ua: "AptvPlayer/1.2.5(iPhone)" },
   { url: "https://itv.5iclub.dpdns.org/MiGu.m3u", ua: "AptvPlayer/1.2.5(iPhone)" },
-  { url: "https://raw.githubusercontent.com/aookapp/kankan/main/ss.m3u", ua: "Mozilla/5.0" },
+  { url: "ss.m3u", local: true },
   { url: "https://raw.githubusercontent.com/develop202/migu_video/refs/heads/main/interface.txt", ua: "Mozilla/5.0" },
   { url: "https://raw.githubusercontent.com/suxuang/myIPTV/main/ipv4.m3u", ua: "Mozilla/5.0" }
 
@@ -95,14 +95,36 @@ async function main() {
     CUSTOM_EPG.split(',').forEach(url => globalEpgUrls.add(url.trim()));
   }
 
-  for (const task of TASKS) {
-    console.log(`正在抓取: ${task.url}`);
+for (const task of TASKS) {
+    console.log(`正在处理: ${task.url}`);
     try {
-      const res = await fetch(task.url, { headers: { "User-Agent": task.ua } });
-      if (!res.ok) continue;
+      let text = '';
       
-      const text = await res.text();
+      // ★ 新增逻辑：判断是本地文件还是网络文件
+      if (task.local) {
+        // 因为脚本在 scripts 文件夹，所以要用 '..' 退回到根目录去找 ss.m3u
+        const localPath = path.join(__dirname, '..', task.url);
+        if (!fs.existsSync(localPath)) {
+          console.error(`❌ 找不到本地文件: ${localPath}，请检查是否放在了根目录！`);
+          continue;
+        }
+        text = fs.readFileSync(localPath, 'utf-8');
+      } else {
+        // 正常的网络抓取
+        const res = await fetch(task.url, { headers: { "User-Agent": task.ua } });
+        if (!res.ok) {
+          console.error(`抓取失败: 状态码 ${res.status}`);
+          continue; 
+        }
+        text = await res.text();
+      }
+      
       const lines = text.split('\n');
+      
+      // ... 下面的 currentExtInf 解析逻辑完全不用动！照常写！
+
+
+      
       
       let currentExtInf = '';
       let matchedKey = null;
