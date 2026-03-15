@@ -136,9 +136,6 @@
   <channel id="新动漫">
     <display-name lang="zh">新动漫</display-name>
   </channel>
-  <channel id="CINEMAX热门影院">
-    <display-name lang="zh">CINEMAX热门影院</display-name>
-  </channel>
   <channel id="优漫卡通频道">
     <display-name lang="zh">优漫卡通频道</display-name>
   </channel>
@@ -17423,71 +17420,6 @@
   <programme start="20260315234000 +0800" stop="20260315235959 +0800" channel="新动漫">
 
 <title lang="zh">狐狸快跑</title>
-
-  </programme>
-  <programme start="20260315000000 +0800" stop="20260315003000 +0800" channel="CINEMAX热门影院">
-
-<title lang="zh">精彩呈现</title>
-
-  </programme>
-  <programme start="20260315003000 +0800" stop="20260315023500 +0800" channel="CINEMAX热门影院">
-
-<title lang="zh">心灵捕手</title>
-
-  </programme>
-  <programme start="20260315023500 +0800" stop="20260315043500 +0800" channel="CINEMAX热门影院">
-
-<title lang="zh">险路勿近</title>
-
-  </programme>
-  <programme start="20260315043500 +0800" stop="20260315060000 +0800" channel="CINEMAX热门影院">
-
-<title lang="zh">大独裁者落难记</title>
-
-  </programme>
-  <programme start="20260315060000 +0800" stop="20260315073000 +0800" channel="CINEMAX热门影院">
-
-<title lang="zh">正义联盟无限地球危机第一部</title>
-
-  </programme>
-  <programme start="20260315073000 +0800" stop="20260315092000 +0800" channel="CINEMAX热门影院">
-
-<title lang="zh">狙击陌生人</title>
-
-  </programme>
-  <programme start="20260315092000 +0800" stop="20260315110000 +0800" channel="CINEMAX热门影院">
-
-<title lang="zh">怪兽卡车</title>
-
-  </programme>
-  <programme start="20260315110000 +0800" stop="20260315135000 +0800" channel="CINEMAX热门影院">
-
-<title lang="zh">教父</title>
-
-  </programme>
-  <programme start="20260315135000 +0800" stop="20260315155000 +0800" channel="CINEMAX热门影院">
-
-<title lang="zh">神鬼认证杰森包恩</title>
-
-  </programme>
-  <programme start="20260315155000 +0800" stop="20260315183000 +0800" channel="CINEMAX热门影院">
-
-<title lang="zh">战争之路</title>
-
-  </programme>
-  <programme start="20260315183000 +0800" stop="20260315202000 +0800" channel="CINEMAX热门影院">
-
-<title lang="zh">天赐良医</title>
-
-  </programme>
-  <programme start="20260315202000 +0800" stop="20260315220000 +0800" channel="CINEMAX热门影院">
-
-<title lang="zh">楚门的世界</title>
-
-  </programme>
-  <programme start="20260315220000 +0800" stop="20260315235959 +0800" channel="CINEMAX热门影院">
-
-<title lang="zh">险路勿近</title>
 
   </programme>
   <programme channel="优漫卡通频道" start="20260315000000 +0800" stop="20260315003000 +0800">
