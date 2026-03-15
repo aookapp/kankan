@@ -97,14 +97,36 @@ async function main() {
     CUSTOM_EPG.split(',').forEach(url => globalEpgUrls.add(url.trim()));
   }
 
-  for (const task of TASKS) {
-    console.log(`正在抓取: ${task.url}`);
+for (const task of TASKS) {
+    console.log(`正在处理: ${task.url}`);
     try {
-      const res = await fetch(task.url, { headers: { "User-Agent": task.ua } });
-      if (!res.ok) continue;
+      let text = '';
       
-      const text = await res.text();
+      // ★ 新增逻辑：判断是本地文件还是网络文件
+      if (task.local) {
+        // 因为脚本在 scripts 文件夹，所以要用 '..' 退回到根目录去找 ss.m3u
+        const localPath = path.join(__dirname, '..', task.url);
+        if (!fs.existsSync(localPath)) {
+          console.error(`❌ 找不到本地文件: ${localPath}，请检查是否放在了根目录！`);
+          continue;
+        }
+        text = fs.readFileSync(localPath, 'utf-8');
+      } else {
+        // 正常的网络抓取
+        const res = await fetch(task.url, { headers: { "User-Agent": task.ua } });
+        if (!res.ok) {
+          console.error(`抓取失败: 状态码 ${res.status}`);
+          continue; 
+        }
+        text = await res.text();
+      }
+      
       const lines = text.split('\n');
+      
+      // ... 下面的 currentExtInf 解析逻辑完全不用动！照常写！
+
+
+      
       
       let currentExtInf = '';
       let matchedKey = null;
@@ -181,7 +203,7 @@ async function main() {
     totalChannels++;
     
     // ★ 新增逻辑：将该频道的所有去重链接转为数组，并严格切出前 5 个！★
-    const limitedUrls = Array.from(info.urls).slice(0, 5);
+    const limitedUrls = Array.from(info.urls).slice(0, 6);
     
     for (const url of limitedUrls) {
       let idStr = info.id ? ` tvg-id="${info.id}"` : '';
