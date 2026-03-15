@@ -23,25 +23,65 @@ function initTemplate() {
   const lines = TEMPLATE.split('\n');
 // ... 后面原封不动保留
   
-  for (let line of lines) {
-    line = line.trim();
-    if (!line) continue;
-    
-    if (line.startsWith('#')) {
-      currentGroup = line.substring(1).trim(); // 获取分组名
-    } else {
-      // 将频道名标准化（去空格、短横线，转小写），作为匹配用的唯一键值
-      let key = line.toLowerCase().replace(/[-_ 　]/g, '');
-      templateChannels.set(key, { 
-        name: line,         // 你模板里原本的名字
-        group: currentGroup,// 所属分类
-        id: '',             // 预留 EPG 频道 ID 位置
-        logo: '',           // 预留台标位置
-        urls: new Set()     // 使用 Set 存储该频道对应的所有去重播放链接
-      });
-    }
-  }
-}
+  let currentExtInf = '';
+      let matchedKey = null;
+      
+      for (let line of lines) {
+        line = line.trim();
+        if (!line) continue;
+        if (line.startsWith('#EXTM3U')) continue;
+        
+        // ==========================================
+        // 模式 1: 解析标准 M3U 格式
+        // ==========================================
+        if (line.startsWith('#EXTINF')) {
+          currentExtInf = line;
+          let m3uName = line.substring(line.lastIndexOf(',') + 1).trim();
+          matchedKey = matchChannel(m3uName);
+          
+          if (matchedKey) {
+            let channelObj = templateChannels.get(matchedKey);
+            let logoMatch = currentExtInf.match(/tvg-logo="([^"]+)"/i);
+            if (logoMatch && !channelObj.logo) channelObj.logo = logoMatch[1];
+            let idMatch = currentExtInf.match(/tvg-id="([^"]+)"/i);
+            if (idMatch && !channelObj.id) channelObj.id = idMatch[1];
+          }
+        } 
+        else if (line.startsWith('http') && matchedKey && currentExtInf) {
+          templateChannels.get(matchedKey).urls.add(line);
+          currentExtInf = '';
+          matchedKey = null;
+        }
+        
+        // ==========================================
+        // 模式 2: 解析 TVBox / TXT 格式 (新增)
+        // ==========================================
+        else if (line.includes(',')) {
+          // 很多 TXT 源会用逗号分隔频道名和链接
+          let parts = line.split(',');
+          if (parts.length >= 2) {
+            let txtName = parts[0].trim();
+            let txtUrls = parts[1].trim();
+            
+            // 跳过 TXT 格式里的分类标签行 (例如: 央视频道,#genre#)
+            if (txtUrls === '#genre#') continue;
+            
+            matchedKey = matchChannel(txtName);
+            if (matchedKey) {
+              // TXT 源可能在一行里用 # 塞了多个链接
+              let urlArray = txtUrls.split('#');
+              for (let u of urlArray) {
+                // 剔除链接后面带的类似 $山西联通 的备注信息
+                let pureUrl = u.split('$')[0].trim();
+                // 确保提取出来的是有效的网络链接
+                if (pureUrl.startsWith('http')) {
+                  templateChannels.get(matchedKey).urls.add(pureUrl);
+                }
+              }
+            }
+          }
+        }
+      }
 
 // --- 4. 智能匹配源频道名到模板频道名 ---
 function matchChannel(m3uChannelName) {
