@@ -38,7 +38,7 @@ jobs:
           git config --local user.name "github-actions[bot]"
           
           # 重点修改：把 M3U 列表和刚刚生成的 epg.xml 一起添加到提交队列
-          git add kankan-hn.m3u kankan-cn.m3u epg.xml
+          git add hn.m3u cn.m3u epg.xml
           
           # 如果文件没有变化，commit 会报错退出，所以加了 || true 忽略报错
           git commit -m "Auto update IPTV and EPG" || true
