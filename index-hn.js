@@ -8,9 +8,6 @@ const TASKS = [
   { url: "https://itv.5iclub.dpdns.org/MiGu.m3u", ua: "AptvPlayer/1.2.5(iPhone)" },
   { url: "https://raw.githubusercontent.com/aookapp/kankan/main/www.m3u", ua: "Mozilla/5.0" },
   { url: "https://raw.githubusercontent.com/develop202/migu_video/refs/heads/main/interface.txt", ua: "Mozilla/5.0" }
-  
-//   { url: "https://itv.aptv.app/china-iptv/zgyd.m3u", ua: "AptvPlayer/1.2.5(iPhone)" }
-//   { url: "https://raw.githubusercontent.com/Kimentanm/aptv/master/m3u/iptv.m3u", ua: "Mozilla/5.0" }
 ];
 
 // --- 2. 填写合并后的 EPG 链接 ---
@@ -19,13 +16,12 @@ const CUSTOM_EPG = "https://kan.935999.xyz/epg.xml";
 // --- 3. 读取外部的 template.txt 文件 ---
 const TEMPLATE = fs.readFileSync(path.join(__dirname, 'template.txt'), 'utf-8');
 
-// --- 4. 解析模板并构建数据结构（整份文件这里只能出现一次！） ---
+// --- 4. 解析模板并构建数据结构 ---
 const templateChannels = new Map(); 
 
 function initTemplate() {
   let currentGroup = '未分类';
   const lines = TEMPLATE.split('\n');
-// ... 后面原封不动保留
   
   for (let line of lines) {
     line = line.trim();
@@ -47,7 +43,7 @@ function initTemplate() {
   }
 }
 
-// --- 4. 智能匹配源频道名到模板频道名 ---
+// --- 5. 智能匹配源频道名到模板频道名 ---
 function matchChannel(m3uChannelName) {
   let clean = m3uChannelName.toLowerCase().replace(/[-_ 　]/g, '');
   
@@ -67,7 +63,7 @@ function matchChannel(m3uChannelName) {
   return null;
 }
 
-// --- 5. 核心抓取与合并逻辑 ---
+// --- 6. 核心抓取与合并逻辑 (支持 M3U + TXT 双引擎) ---
 async function main() {
   initTemplate();
   const globalEpgUrls = new Set(); // 存储所有抓取到的 EPG 链接
@@ -94,6 +90,7 @@ async function main() {
       
       for (let line of lines) {
         line = line.trim();
+        if (!line) continue;
         
         // 提取原文件的全局 EPG 链接
         if (line.startsWith('#EXTM3U')) {
@@ -104,6 +101,9 @@ async function main() {
           continue;
         }
         
+        // ==========================================
+        // 模式 1: 解析标准 M3U 格式
+        // ==========================================
         if (line.startsWith('#EXTINF')) {
           currentExtInf = line;
           let m3uName = line.substring(line.lastIndexOf(',') + 1).trim();
@@ -112,24 +112,44 @@ async function main() {
           if (matchedKey) {
             let channelObj = templateChannels.get(matchedKey);
             
-            // 提取台标 (如果还没提取到的话)
+            // 提取台标
             let logoMatch = currentExtInf.match(/tvg-logo="([^"]+)"/i);
-            if (logoMatch && !channelObj.logo) {
-              channelObj.logo = logoMatch[1];
-            }
+            if (logoMatch && !channelObj.logo) channelObj.logo = logoMatch[1];
             
-            // 提取 EPG 对应的 tvg-id (如果还没提取到的话)
+            // 提取 EPG 对应的 tvg-id
             let idMatch = currentExtInf.match(/tvg-id="([^"]+)"/i);
-            if (idMatch && !channelObj.id) {
-              channelObj.id = idMatch[1];
-            }
+            if (idMatch && !channelObj.id) channelObj.id = idMatch[1];
           }
-        } else if (line.startsWith('http') || line.startsWith('rtmp') || line.startsWith('rtsp')) {
-          if (matchedKey && currentExtInf) {
-            templateChannels.get(matchedKey).urls.add(line);
-          }
+        } 
+        else if ((line.startsWith('http') || line.startsWith('rtmp') || line.startsWith('rtsp')) && matchedKey && currentExtInf) {
+          templateChannels.get(matchedKey).urls.add(line);
           currentExtInf = '';
           matchedKey = null;
+        }
+        
+        // ==========================================
+        // 模式 2: 解析 TVBox / TXT 格式 (例如 interface.txt)
+        // ==========================================
+        else if (line.includes(',') && !line.startsWith('#EXTINF')) {
+          let parts = line.split(',');
+          if (parts.length >= 2) {
+            let txtName = parts[0].trim();
+            let txtUrls = parts[1].trim();
+            
+            if (txtUrls === '#genre#') continue; // 跳过分类标签
+            
+            matchedKey = matchChannel(txtName);
+            if (matchedKey) {
+              let urlArray = txtUrls.split('#'); // 切割同行多个源
+              for (let u of urlArray) {
+                let pureUrl = u.split('$')[0].trim(); // 去除 $ 后面的网络备注
+                if (pureUrl.startsWith('http') || pureUrl.startsWith('rtmp') || pureUrl.startsWith('rtsp')) {
+                  templateChannels.get(matchedKey).urls.add(pureUrl);
+                }
+              }
+              matchedKey = null; // 重置，避免影响下一行
+            }
+          }
         }
       }
     } catch (e) {
@@ -137,9 +157,8 @@ async function main() {
     }
   }
 
-  // --- 6. 生成最终的 M3U 内容 ---
-  // --- 6. 生成最终的 M3U 内容 ---
-  // 将收集到的 EPG 链接转为数组，并限制最多只保留前 3 个
+  // --- 7. 生成最终的 M3U 内容 ---
+  // 将收集到的 EPG 链接转为数组，并限制最多只保留前 1 个
   const limitedEpgUrls = Array.from(globalEpgUrls).slice(0, 1);
   const epgUrlString = limitedEpgUrls.join(',');
   const epgHeader = epgUrlString ? ` x-tvg-url="${epgUrlString}"` : '';
@@ -169,6 +188,7 @@ async function main() {
   // 写入文件
   fs.writeFileSync('kankan-hn.m3u', output);
   fs.writeFileSync('hn.m3u', output);
+  
   console.log(`\n🎉 处理完成！`);
   console.log(`收集到了 ${globalEpgUrls.size} 个 EPG 节目单链接。`);
   console.log(`共匹配到 ${totalChannels} 个模板频道，生成了 ${totalLinks} 条播放链接。`);
