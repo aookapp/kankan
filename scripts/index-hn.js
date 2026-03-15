@@ -27,7 +27,8 @@ function initTemplate() {
   
   for (let line of lines) {
     line = line.trim();
-    if (!line) continue;
+   // ★ 新增：遇到空行，或者以 // 开头的行，直接无视并跳过
+    if (!line || line.startsWith('//')) continue;
     
     if (line.startsWith('#')) {
       currentGroup = line.substring(1).trim(); // 获取分组名
