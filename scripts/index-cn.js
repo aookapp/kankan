@@ -19,7 +19,7 @@ const TASKS = [
 // --- 2. 填写合并后的 EPG 链接 ---
 const CUSTOM_EPG = "https://hk.gh-proxy.org/https://raw.githubusercontent.com/aookapp/kankan/main/epg.xml";
 
-//
+
 // --- 3. 读取外部的 template.txt 文件 ---
 const TEMPLATE = fs.readFileSync(path.join(__dirname, 'template.txt'), 'utf-8');
 
@@ -32,7 +32,8 @@ function initTemplate() {
   
   for (let line of lines) {
     line = line.trim();
-    if (!line) continue;
+   // ★ 新增：遇到空行，或者以 // 开头的行，直接无视并跳过
+    if (!line || line.startsWith('//')) continue;
     
     if (line.startsWith('#')) {
       currentGroup = line.substring(1).trim(); // 获取分组名
@@ -97,7 +98,7 @@ async function main() {
       
       for (let line of lines) {
         line = line.trim();
-        if (!line || line.startsWith('//')) continue;
+        if (!line) continue;
         
         // 提取原文件的全局 EPG 链接
         if (line.startsWith('#EXTM3U')) {
@@ -193,12 +194,10 @@ async function main() {
   }
 
   // 写入文件
-
   fs.writeFileSync('cn.m3u', output);
   
   console.log(`\n🎉 处理完成！`);
   console.log(`收集到了 ${globalEpgUrls.size} 个 EPG 节目单链接。`);
   console.log(`共匹配到 ${totalChannels} 个模板频道，生成了 ${totalLinks} 条播放链接。`);
 }
-
 main();
