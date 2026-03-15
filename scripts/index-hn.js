@@ -7,7 +7,9 @@ const TASKS = [
   { url: "https://itv.aptv.app/china-iptv/hnyd.m3u", ua: "AptvPlayer/1.2.5(iPhone)" },
   { url: "https://itv.5iclub.dpdns.org/MiGu.m3u", ua: "AptvPlayer/1.2.5(iPhone)" },
   { url: "https://raw.githubusercontent.com/aookapp/kankan/main/ss.m3u", ua: "Mozilla/5.0" },
-  { url: "https://raw.githubusercontent.com/develop202/migu_video/refs/heads/main/interface.txt", ua: "Mozilla/5.0" }
+  { url: "https://raw.githubusercontent.com/develop202/migu_video/refs/heads/main/interface.txt", ua: "Mozilla/5.0" },
+  { url: "https://raw.githubusercontent.com/suxuang/myIPTV/main/ipv4.m3u", ua: "Mozilla/5.0" }
+
 ];
 
 // --- 2. 填写合并后的 EPG 链接 ---
