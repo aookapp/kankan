@@ -168,7 +168,7 @@ async function main() {
   }
 
   // 写入文件
-  fs.writeFileSync('kankan-cn.m3u', output);
+  fs.writeFileSync('cn.m3u', output);
   console.log(`\n🎉 处理完成！`);
   console.log(`收集到了 ${globalEpgUrls.size} 个 EPG 节目单链接。`);
   console.log(`共匹配到 ${totalChannels} 个模板频道，生成了 ${totalLinks} 条播放链接。`);
