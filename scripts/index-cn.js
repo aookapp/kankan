@@ -97,7 +97,7 @@ async function main() {
       
       for (let line of lines) {
         line = line.trim();
-        if (!line) continue;
+        if (!line || line.startsWith('//')) continue;
         
         // 提取原文件的全局 EPG 链接
         if (line.startsWith('#EXTM3U')) {
