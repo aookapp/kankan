@@ -14,7 +14,7 @@ const TASKS = [
 ];
 
 // --- 2. 填写合并后的 EPG 链接 ---
-const CUSTOM_EPG = "https://hk.gh-proxy.org/https://raw.githubusercontent.com/aookapp/kankan/main/epg.xml";
+const CUSTOM_EPG = "https://kan.935999.xyz/epg.xml";
 
 // --- 3. 读取外部的 template.txt 文件 ---
 const TEMPLATE = fs.readFileSync(path.join(__dirname, 'template.txt'), 'utf-8');
@@ -167,6 +167,7 @@ async function main() {
   }
 
   // 写入文件
+  fs.writeFileSync('kankan-hn.m3u', output);
   fs.writeFileSync('hn.m3u', output);
   console.log(`\n🎉 处理完成！`);
   console.log(`收集到了 ${globalEpgUrls.size} 个 EPG 节目单链接。`);
