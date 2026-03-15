@@ -193,7 +193,7 @@ async function main() {
   }
 
   // 写入文件
-  fs.writeFileSync('kankan-cn.m3u', output);
+
   fs.writeFileSync('cn.m3u', output);
   
   console.log(`\n🎉 处理完成！`);
