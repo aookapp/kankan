@@ -23,14 +23,14 @@ jobs:
         run: npm install opencc-js
 
       - name: Run script hn
-        run: node index-hn.js
+        run: node scripts/index-hn.js
         
       - name: Run script cn
-        run: node index-cn.js
+        run: node scripts/index-cn.js
 
       # 新增：运行我们刚写的 EPG 合并脚本
       - name: Run EPG merge script
-        run: node epg-merge.js
+        run: node scripts/epg-merge.js
 
       - name: 提交并推送到仓库
         run: |
