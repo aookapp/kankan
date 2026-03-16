@@ -17,11 +17,9 @@ const TASKS = [
 // --- 2. 填写合并后的 EPG 链接 ---
 const CUSTOM_EPG = "https://gh-proxy.com/https://raw.githubusercontent.com/aookapp/kankan/main/epg.xml";
 
-// --- 3. ★ 新增：频道别名与智能合并规则 ★ ---
-// 左边是你 template.txt 里的标准名字，右边是可能抓到的各种马甲/别名
-// 以后发现新的叫法，随时往右边的数组里加！
-// --- 3. 引入独立的频道别名配置 ---
-const ALIAS_MAP = require('./alias.js');
+// --- 3. 引入独立的配置 ---
+const ALIAS_MAP = require('./alias.js');      // 引入频道别名配置
+const BLOCK_LIST = require('./blocklist.js'); // ★ 新增：引入黑名单配置
 
 // --- 4. 读取外部的 template.txt 文件 ---
 const TEMPLATE = fs.readFileSync(path.join(__dirname, 'template.txt'), 'utf-8');
@@ -35,7 +33,6 @@ function initTemplate() {
   
   for (let line of lines) {
     line = line.trim();
-    // 遇到空行或者以 // 开头的行直接跳过，实现完美隐藏开关
     if (!line || line.startsWith('//')) continue;
     
     if (line.startsWith('#')) {
@@ -57,21 +54,17 @@ function initTemplate() {
 function matchChannel(m3uChannelName) {
   let clean = m3uChannelName.toLowerCase().replace(/[-_ 　]/g, '');
   
-  // ★ 新增逻辑：别名拦截与强行归类 ★
   for (const [standard, aliases] of Object.entries(ALIAS_MAP)) {
-    // 1. 如果抓到的名字包含了标准名（比如"周星驰电影"包含了"周星驰"），直接归为标准名
     if (clean.includes(standard)) {
       clean = standard;
       break;
     }
-    // 2. 如果抓到的名字匹配到了右边的别名（比如"周星星"），强行转化为标准名
     if (aliases.some(alias => clean.includes(alias))) {
       clean = standard;
       break;
     }
   }
 
-  // 检查归类后的名字是否在你的模板里
   if (templateChannels.has(clean)) return clean;
   
   let cleanNoSuffix = clean.replace(/hd|fhd|1080p|1080i|720p|超清|高清/g, '');
@@ -88,23 +81,28 @@ function matchChannel(m3uChannelName) {
   return null;
 }
 
-// --- 7. 核心抓取与合并逻辑 (支持 M3U + TXT 双引擎) ---
+// ★ 新增：黑名单检测函数 ★
+function isBlocked(url) {
+  // 遍历黑名单，只要 URL 包含了黑名单里的任何一段字符串，就返回 true（该屏蔽）
+  return BLOCK_LIST.some(keyword => url.includes(keyword));
+}
+
+// --- 7. 核心抓取与合并逻辑 ---
 async function main() {
   initTemplate();
   const globalEpgUrls = new Set(); 
+  let blockedCount = 0; // 统计拦截了多少个垃圾源
   
   if (CUSTOM_EPG) {
     CUSTOM_EPG.split(',').forEach(url => globalEpgUrls.add(url.trim()));
   }
 
-for (const task of TASKS) {
+  for (const task of TASKS) {
     console.log(`正在处理: ${task.url}`);
     try {
       let text = '';
       
-      // ★ 新增逻辑：判断是本地文件还是网络文件
       if (task.local) {
-        // 因为脚本在 scripts 文件夹，所以要用 '..' 退回到根目录去找 ss.m3u
         const localPath = path.join(__dirname, '..', task.url);
         if (!fs.existsSync(localPath)) {
           console.error(`❌ 找不到本地文件: ${localPath}，请检查是否放在了根目录！`);
@@ -112,7 +110,6 @@ for (const task of TASKS) {
         }
         text = fs.readFileSync(localPath, 'utf-8');
       } else {
-        // 正常的网络抓取
         const res = await fetch(task.url, { headers: { "User-Agent": task.ua } });
         if (!res.ok) {
           console.error(`抓取失败: 状态码 ${res.status}`);
@@ -122,12 +119,6 @@ for (const task of TASKS) {
       }
       
       const lines = text.split('\n');
-      
-      // ... 下面的 currentExtInf 解析逻辑完全不用动！照常写！
-
-
-      
-      
       let currentExtInf = '';
       let matchedKey = null;
       
@@ -155,7 +146,12 @@ for (const task of TASKS) {
           }
         } 
         else if ((line.startsWith('http') || line.startsWith('rtmp') || line.startsWith('rtsp')) && matchedKey && currentExtInf) {
-          templateChannels.get(matchedKey).urls.add(line);
+          // ★ 新增：黑名单拦截
+          if (isBlocked(line)) {
+            blockedCount++;
+          } else {
+            templateChannels.get(matchedKey).urls.add(line);
+          }
           currentExtInf = '';
           matchedKey = null;
         }
@@ -173,7 +169,12 @@ for (const task of TASKS) {
               for (let u of urlArray) {
                 let pureUrl = u.split('$')[0].trim(); 
                 if (pureUrl.startsWith('http') || pureUrl.startsWith('rtmp') || pureUrl.startsWith('rtsp')) {
-                  templateChannels.get(matchedKey).urls.add(pureUrl);
+                  // ★ 新增：黑名单拦截
+                  if (isBlocked(pureUrl)) {
+                    blockedCount++;
+                  } else {
+                    templateChannels.get(matchedKey).urls.add(pureUrl);
+                  }
                 }
               }
               matchedKey = null; 
@@ -202,8 +203,7 @@ for (const task of TASKS) {
     
     totalChannels++;
     
-    // ★ 新增逻辑：将该频道的所有去重链接转为数组，并严格切出前 5 个！★
-    const limitedUrls = Array.from(info.urls).slice(0, 6);
+    const limitedUrls = Array.from(info.urls).slice(0, 5);
     
     for (const url of limitedUrls) {
       let idStr = info.id ? ` tvg-id="${info.id}"` : '';
@@ -219,8 +219,11 @@ for (const task of TASKS) {
   fs.writeFileSync('cn.m3u', output);
   
   console.log(`\n🎉 处理完成！`);
+  console.log(`🛡️  防线生效: 共拦截了 ${blockedCount} 条黑名单失效链接。`);
   console.log(`收集到了 ${globalEpgUrls.size} 个 EPG 节目单链接。`);
-  console.log(`共匹配到 ${totalChannels} 个模板频道，生成了 ${totalLinks} 条播放链接 (每个频道最多保留 5 个)。`);
+  console.log(`共匹配到 ${totalChannels} 个模板频道，生成了 ${totalLinks} 条纯净播放链接 (每个频道最多保留 5 个)。`);
 }
+
+main();
 
 main();
