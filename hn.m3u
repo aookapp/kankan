@@ -1,5 +1,5 @@
 #EXTM3U x-tvg-url="https://kan.935999.xyz/epg.xml"
-# 自动更新时间: 2026/3/16 10:48:45
+# 自动更新时间: 2026/3/16 11:06:27
 #EXTINF:-1 tvg-id="CCTV1" tvg-name="CCTV1" group-title="央视" tvg-logo="https://live.lizanyang.top/tv/CCTV1.png",CCTV1
 http://iptv.cdn.ha.chinamobile.com/PLTV/88888888/224/3221227262/index.m3u8
 #EXTINF:-1 tvg-id="CCTV1" tvg-name="CCTV1" group-title="央视" tvg-logo="https://live.lizanyang.top/tv/CCTV1.png",CCTV1
@@ -394,8 +394,6 @@ http://cdn.jdshipin.com:8880/huya.php?id=11601986
 https://live.ottiptv.cc/yy/1354889019
 #EXTINF:-1 tvg-name="科幻电影" group-title="电影" tvg-logo="https://gitee.com/suxuang/logo/raw/master/mylogo/虎牙直播.png",科幻电影
 http://cdn.jdshipin.com:8880/huya.php?id=11342428
-#EXTINF:-1 tvg-id="睛彩中原" tvg-name="大象睛彩中原" group-title="戏曲",大象睛彩中原
-http://iptv.cdn.ha.chinamobile.com/PLTV/88888888/224/3221226927/1.m3u8?fmt=ts2hls
 #EXTINF:-1 tvg-id="大象戏曲" tvg-name="大象戏曲" group-title="戏曲",大象戏曲
 http://iptv.cdn.ha.chinamobile.com/PLTV/88888888/224/3221226933/1.m3u8?fmt=ts2hls
 #EXTINF:-1 tvg-id="移动戏曲" tvg-name="大象移动戏曲" group-title="戏曲",大象移动戏曲
@@ -436,16 +434,16 @@ https://iptv.catvod.com/live.php?token=38359067d045611929949bf45f99133c12c7aaca9
 https://iptv.catvod.com/live.php?token=38359067d045611929949bf45f99133c12c7aaca99d1b9f9dbfe202cf03c5d89&id=%E5%98%89%E4%BD%B3%E5%8D%A1%E9%80%9A&line=2
 #EXTINF:-1 tvg-id="嘉佳卡通" tvg-name="嘉佳卡通" group-title="动画" tvg-logo="https://live.lizanyang.top/tv/嘉佳卡通.png",嘉佳卡通
 https://iptv.catvod.com/live.php?token=38359067d045611929949bf45f99133c12c7aaca99d1b9f9dbfe202cf03c5d89&id=%E5%98%89%E4%BD%B3%E5%8D%A1%E9%80%9A&line=3
-#EXTINF:-1 tvg-id="优漫卡通频道" tvg-name="优漫卡通频道" group-title="动画" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5500/260/553/202104022139_5100186455_H32_1080.webp",优漫卡通频道
+#EXTINF:-1 tvg-id="江苏优漫卡通" tvg-name="优漫卡通" group-title="动画" tvg-logo="https://live.lizanyang.top/tv/优漫卡通.png",优漫卡通
+http://iptv.cdn.ha.chinamobile.com/PLTV/88888888/224/3221226406/index.m3u8
+#EXTINF:-1 tvg-id="江苏优漫卡通" tvg-name="优漫卡通" group-title="动画" tvg-logo="https://live.lizanyang.top/tv/优漫卡通.png",优漫卡通
 http://47.119.24.76:59093/626064703
-#EXTINF:-1 tvg-id="优漫卡通频道" tvg-name="优漫卡通频道" group-title="动画" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5500/260/553/202104022139_5100186455_H32_1080.webp",优漫卡通频道
+#EXTINF:-1 tvg-id="江苏优漫卡通" tvg-name="优漫卡通" group-title="动画" tvg-logo="https://live.lizanyang.top/tv/优漫卡通.png",优漫卡通
 https://iptv.catvod.com/live.php?token=38359067d045611929949bf45f99133c12c7aaca99d1b9f9dbfe202cf03c5d89&id=%E4%BC%98%E6%BC%AB%E5%8D%A1%E9%80%9A%E9%A2%91%E9%81%93&line=1
-#EXTINF:-1 tvg-id="优漫卡通频道" tvg-name="优漫卡通频道" group-title="动画" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5500/260/553/202104022139_5100186455_H32_1080.webp",优漫卡通频道
+#EXTINF:-1 tvg-id="江苏优漫卡通" tvg-name="优漫卡通" group-title="动画" tvg-logo="https://live.lizanyang.top/tv/优漫卡通.png",优漫卡通
 https://iptv.catvod.com/live.php?token=38359067d045611929949bf45f99133c12c7aaca99d1b9f9dbfe202cf03c5d89&id=%E4%BC%98%E6%BC%AB%E5%8D%A1%E9%80%9A%E9%A2%91%E9%81%93&line=2
-#EXTINF:-1 tvg-id="优漫卡通频道" tvg-name="优漫卡通频道" group-title="动画" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5500/260/553/202104022139_5100186455_H32_1080.webp",优漫卡通频道
+#EXTINF:-1 tvg-id="江苏优漫卡通" tvg-name="优漫卡通" group-title="动画" tvg-logo="https://live.lizanyang.top/tv/优漫卡通.png",优漫卡通
 https://iptv.catvod.com/live.php?token=38359067d045611929949bf45f99133c12c7aaca99d1b9f9dbfe202cf03c5d89&id=%E4%BC%98%E6%BC%AB%E5%8D%A1%E9%80%9A%E9%A2%91%E9%81%93&line=3
-#EXTINF:-1 tvg-id="优漫卡通频道" tvg-name="优漫卡通频道" group-title="动画" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5500/260/553/202104022139_5100186455_H32_1080.webp",优漫卡通频道
-https://iptv.catvod.com/live.php?token=38359067d045611929949bf45f99133c12c7aaca99d1b9f9dbfe202cf03c5d89&id=%E4%BC%98%E6%BC%AB%E5%8D%A1%E9%80%9A%E9%A2%91%E9%81%93&line=4
 #EXTINF:-1 tvg-id="新动漫" tvg-name="新动漫" group-title="动画" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/v1/image/5910/022/319/202512290851_1766568052605_H32_1080.webp",新动漫
 http://47.119.24.76:59093/961930269
 #EXTINF:-1 tvg-id="新动漫" tvg-name="新动漫" group-title="动画" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/v1/image/5910/022/319/202512290851_1766568052605_H32_1080.webp",新动漫
