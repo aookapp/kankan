@@ -1,5 +1,5 @@
 #EXTM3U x-tvg-url="https://kan.935999.xyz/epg.xml"
-# 自动更新时间: 2026/3/16 11:06:27
+# 自动更新时间: 2026/3/18 09:45:31
 #EXTINF:-1 tvg-id="CCTV1" tvg-name="CCTV1" group-title="央视" tvg-logo="https://live.lizanyang.top/tv/CCTV1.png",CCTV1
 http://iptv.cdn.ha.chinamobile.com/PLTV/88888888/224/3221227262/index.m3u8
 #EXTINF:-1 tvg-id="CCTV1" tvg-name="CCTV1" group-title="央视" tvg-logo="https://live.lizanyang.top/tv/CCTV1.png",CCTV1
@@ -165,11 +165,11 @@ https://iptv.catvod.com/live.php?token=38359067d045611929949bf45f99133c12c7aaca9
 #EXTINF:-1 tvg-id="CCTV16" tvg-name="CCTV16" group-title="央视" tvg-logo="https://logo.catvod.com/CCTV16.png",CCTV16
 https://iptv.catvod.com/live.php?token=38359067d045611929949bf45f99133c12c7aaca99d1b9f9dbfe202cf03c5d89&id=CCTV16&line=2
 #EXTINF:-1 tvg-id="CCTV16" tvg-name="CCTV16" group-title="央视" tvg-logo="https://logo.catvod.com/CCTV16.png",CCTV16
+https://iptv.catvod.com/live.php?token=38359067d045611929949bf45f99133c12c7aaca99d1b9f9dbfe202cf03c5d89&id=CCTV16&line=3
+#EXTINF:-1 tvg-id="CCTV16" tvg-name="CCTV16" group-title="央视" tvg-logo="https://logo.catvod.com/CCTV16.png",CCTV16
+https://iptv.catvod.com/live.php?token=38359067d045611929949bf45f99133c12c7aaca99d1b9f9dbfe202cf03c5d89&id=CCTV16%284K%29&line=1
+#EXTINF:-1 tvg-id="CCTV16" tvg-name="CCTV16" group-title="央视" tvg-logo="https://logo.catvod.com/CCTV16.png",CCTV16
 http://69.30.246.194/live/cctv16.m3u8
-#EXTINF:-1 tvg-id="CCTV16" tvg-name="CCTV16" group-title="央视" tvg-logo="https://logo.catvod.com/CCTV16.png",CCTV16
-http://38.75.136.137:98/gslb/dsdqpub/cctv16hd.m3u8?auth=testpub
-#EXTINF:-1 tvg-id="CCTV16" tvg-name="CCTV16" group-title="央视" tvg-logo="https://logo.catvod.com/CCTV16.png",CCTV16
-http://p.ytelc.com/169l/0/cctv.php?id=cctv16
 #EXTINF:-1 tvg-id="CCTV17" tvg-name="CCTV17" group-title="央视" tvg-logo="https://live.lizanyang.top/tv/CCTV17.png",CCTV17
 http://iptv.cdn.ha.chinamobile.com/PLTV/88888888/224/3221227188/index.m3u8
 #EXTINF:-1 tvg-id="CCTV17" tvg-name="CCTV17" group-title="央视" tvg-logo="https://live.lizanyang.top/tv/CCTV17.png",CCTV17
@@ -187,9 +187,11 @@ http://iptv.cdn.ha.chinamobile.com/PLTV/88888888/224/3221227354/index.m3u8
 #EXTINF:-1 tvg-id="CCTV4K" tvg-name="CCTV4K" group-title="央视" tvg-logo="https://live.lizanyang.top/tv/CCTV4K.png",CCTV4K
 http://iptv.cdn.ha.chinamobile.com/PLTV/88888888/224/3221227382/index.m3u8
 #EXTINF:-1 tvg-id="CCTV4K" tvg-name="CCTV4K" group-title="央视" tvg-logo="https://live.lizanyang.top/tv/CCTV4K.png",CCTV4K
-http://p.ytelc.com/169l/0/cctv.php?id=cctv4k
+https://iptv.catvod.com/live.php?token=38359067d045611929949bf45f99133c12c7aaca99d1b9f9dbfe202cf03c5d89&id=CCTV4K&line=1
 #EXTINF:-1 tvg-id="CCTV4K" tvg-name="CCTV4K" group-title="央视" tvg-logo="https://live.lizanyang.top/tv/CCTV4K.png",CCTV4K
-http://www.tszhgjj.cn:7000/rtp/239.253.93.134:6631
+http://p.ytelc.com/169l/0/cctv.php?id=cctv4k
+#EXTINF:-1 tvg-id="CCTV8K" tvg-name="CCTV8K" group-title="央视" tvg-logo="https://logo.catvod.com/CCTV8K.png",CCTV8K
+https://iptv.catvod.com/live.php?token=38359067d045611929949bf45f99133c12c7aaca99d1b9f9dbfe202cf03c5d89&id=CCTV8K&line=1
 #EXTINF:-1 tvg-id="河南卫视" tvg-name="河南卫视" group-title="卫视" tvg-logo="https://live.lizanyang.top/tv/河南卫视.png",河南卫视
 http://iptv.cdn.ha.chinamobile.com/PLTV/88888888/224/3221227198/index.m3u8
 #EXTINF:-1 tvg-id="河南卫视" tvg-name="河南卫视" group-title="卫视" tvg-logo="https://live.lizanyang.top/tv/河南卫视.png",河南卫视
@@ -452,8 +454,6 @@ https://iptv.catvod.com/live.php?token=38359067d045611929949bf45f99133c12c7aaca9
 https://iptv.catvod.com/live.php?token=38359067d045611929949bf45f99133c12c7aaca99d1b9f9dbfe202cf03c5d89&id=%E6%96%B0%E5%8A%A8%E6%BC%AB&line=2
 #EXTINF:-1 tvg-id="新动漫" tvg-name="新动漫" group-title="动画" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/v1/image/5910/022/319/202512290851_1766568052605_H32_1080.webp",新动漫
 https://iptv.catvod.com/live.php?token=38359067d045611929949bf45f99133c12c7aaca99d1b9f9dbfe202cf03c5d89&id=%E6%96%B0%E5%8A%A8%E6%BC%AB&line=3
-#EXTINF:-1 tvg-id="新动漫" tvg-name="新动漫" group-title="动画" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/v1/image/5910/022/319/202512290851_1766568052605_H32_1080.webp",新动漫
-https://iptv.catvod.com/live.php?token=38359067d045611929949bf45f99133c12c7aaca99d1b9f9dbfe202cf03c5d89&id=%E6%96%B0%E5%8A%A8%E6%BC%AB&line=4
 #EXTINF:-1 tvg-name="猫和老鼠" group-title="动画" tvg-logo="https://ghproxy.net/raw.githubusercontent.com/suxuang/myIPTV/main/img/猫和老鼠.png",猫和老鼠
 https://live.ottiptv.cc/huya/11352879
 #EXTINF:-1 tvg-name="哆啦A梦" group-title="动画" tvg-logo="https://ghproxy.net/raw.githubusercontent.com/suxuang/myIPTV/main/img/哆啦A梦.png",哆啦A梦
