@@ -15,7 +15,7 @@ const TASKS = [
 ];
 
 // --- 2. 填写合并后的 EPG 链接 ---
-const CUSTOM_EPG = "https://kan.935999.xyz/epg.xml;
+const CUSTOM_EPG = "https://kan.935999.xyz/epg.xml";
 
 // --- 3. 引入独立的配置 ---
 const ALIAS_MAP = require('./alias.js');      // 引入频道别名配置
