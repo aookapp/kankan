@@ -1,5 +1,5 @@
 #EXTM3U x-tvg-url="https://kan.935999.xyz/epg.xml"
-# 自动更新时间: 2026/4/4 07:38:52
+# 自动更新时间: 2026/4/5 07:35:56
 #EXTINF:-1 tvg-id="CCTV1综合" tvg-name="CCTV1" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/2201/057/821/202204010054_1626677671392_H32_1080.webp",CCTV1
 http://47.119.24.76:59093/608807420
 #EXTINF:-1 tvg-id="CCTV1综合" tvg-name="CCTV1" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/2201/057/821/202204010054_1626677671392_H32_1080.webp",CCTV1
@@ -46,8 +46,6 @@ http://113.9.149.58:9003/hls/2018/index.m3u8
 http://120.211.62.180:8000/hls/18/index.m3u8
 #EXTINF:-1 tvg-id="CCTV6电影" tvg-name="CCTV6" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5500/212/872/202204010054_1626679914432_H32_1080.webp",CCTV6
 http://47.119.24.76:59093/624878396
-#EXTINF:-1 tvg-id="CCTV6电影" tvg-name="CCTV6" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5500/212/872/202204010054_1626679914432_H32_1080.webp",CCTV6
-http://pull-hls-f11.douyincdn.com/media/stream-695587329821377196.m3u8?arch_hrchy=w1&exp_hrchy=w1&expire=1775812129&major_anchor_level=common&sign=e35cee45305242ce14c155c9908cac68&t_id=037-2026040317084888CD726900AC3C8990DB-Wef3rj
 #EXTINF:-1 tvg-id="CCTV6电影" tvg-name="CCTV6" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5500/212/872/202204010054_1626679914432_H32_1080.webp",CCTV6
 http://pull-hls-f11.douyincdn.com/media/stream-695550183385334444.m3u8?arch_hrchy=w1&exp_hrchy=w1&expire=1775212079&major_anchor_level=common&sign=df934e7ccd289742a9dcd9e796a21e73&t_id=037-20260327182759E3D672881FBE8BC84271-smZh1q
 #EXTINF:-1 tvg-id="CCTV6电影" tvg-name="CCTV6" group-title="央视" tvg-logo="http://wapx.cmvideo.cn:8080/publish/poms/image/5500/212/872/202204010054_1626679914432_H32_1080.webp",CCTV6
