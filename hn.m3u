@@ -1,5 +1,5 @@
 #EXTM3U x-tvg-url="https://kan.935999.xyz/epg.xml"
-# 自动更新时间: 2026/4/7 07:40:39
+# 自动更新时间: 2026/4/8 07:40:54
 #EXTINF:-1 tvg-id="CCTV1" tvg-name="CCTV1" group-title="央视" tvg-logo="https://live.lizanyang.top/tv/CCTV1.png",CCTV1
 http://iptv.cdn.ha.chinamobile.com/PLTV/88888888/224/3221227262/index.m3u8
 #EXTINF:-1 tvg-id="CCTV1" tvg-name="CCTV1" group-title="央视" tvg-logo="https://live.lizanyang.top/tv/CCTV1.png",CCTV1
@@ -67,9 +67,9 @@ http://iptv.cdn.ha.chinamobile.com/PLTV/88888888/224/3221226937/1.m3u8?fmt=ts2hl
 #EXTINF:-1 tvg-id="CCTV6" tvg-name="CCTV6" group-title="央视" tvg-logo="https://live.lizanyang.top/tv/CCTV6.png",CCTV6
 http://47.119.24.76:59093/624878396
 #EXTINF:-1 tvg-id="CCTV6" tvg-name="CCTV6" group-title="央视" tvg-logo="https://live.lizanyang.top/tv/CCTV6.png",CCTV6
-http://pull-hls-f11.douyincdn.com/media/stream-695587329821377196.m3u8?arch_hrchy=w1&exp_hrchy=w1&expire=1776055177&major_anchor_level=common&sign=ac74dc524cbdead720cf92a07a9500ba&t_id=037-2026040612393649C2EF8C86D956C27616-IjtU2k
-#EXTINF:-1 tvg-id="CCTV6" tvg-name="CCTV6" group-title="央视" tvg-logo="https://live.lizanyang.top/tv/CCTV6.png",CCTV6
 http://pull-hls-f11.douyincdn.com/media/stream-695550183385334444.m3u8?arch_hrchy=w1&exp_hrchy=w1&expire=1775212079&major_anchor_level=common&sign=df934e7ccd289742a9dcd9e796a21e73&t_id=037-20260327182759E3D672881FBE8BC84271-smZh1q
+#EXTINF:-1 tvg-id="CCTV6" tvg-name="CCTV6" group-title="央视" tvg-logo="https://live.lizanyang.top/tv/CCTV6.png",CCTV6
+http://iptv.huuc.edu.cn/hls/cctv6hd.m3u8
 #EXTINF:-1 tvg-id="CCTV7" tvg-name="CCTV7" group-title="央视" tvg-logo="https://live.lizanyang.top/tv/CCTV7.png",CCTV7
 http://iptv.cdn.ha.chinamobile.com/PLTV/88888888/224/3221227180/index.m3u8
 #EXTINF:-1 tvg-id="CCTV7" tvg-name="CCTV7" group-title="央视" tvg-logo="https://live.lizanyang.top/tv/CCTV7.png",CCTV7
@@ -137,9 +137,9 @@ http://iptv.cdn.ha.chinamobile.com/PLTV/88888888/224/3221226919/1.m3u8?fmt=ts2hl
 #EXTINF:-1 tvg-id="CCTV13" tvg-name="CCTV13" group-title="央视" tvg-logo="https://live.lizanyang.top/tv/CCTV13.png",CCTV13
 http://47.119.24.76:59093/608807423
 #EXTINF:-1 tvg-id="CCTV13" tvg-name="CCTV13" group-title="央视" tvg-logo="https://live.lizanyang.top/tv/CCTV13.png",CCTV13
-http://pull-hls-f11.douyincdn.com/media/stream-695553383939179180.m3u8?arch_hrchy=w1&exp_hrchy=w1&expire=1775812647&major_anchor_level=common&sign=a16a13163e5a1bb150e2fdd5448bc59d&t_id=037-2026040317172716CCE7A11D64BD3CD9C0-IOLuIy
+http://pull-hls-f11.douyincdn.com/media/stream-695579599148417708.m3u8?arch_hrchy=w1&exp_hrchy=w1&expire=1776158026&major_anchor_level=common&sign=570d99ae8e46e223e5dcf8866006b64d&t_id=037-2026040717134608B5CC3E9E05A50957E4-1VdjWb
 #EXTINF:-1 tvg-id="CCTV13" tvg-name="CCTV13" group-title="央视" tvg-logo="https://live.lizanyang.top/tv/CCTV13.png",CCTV13
-http://148.135.93.213/live.php?id=CCTV13
+http://pull-hls-f11.douyincdn.com/media/stream-695553383939179180.m3u8?arch_hrchy=w1&exp_hrchy=w1&expire=1776158091&major_anchor_level=common&sign=b6ff08dbb56dc9d66ae8fbe7a039d11e&t_id=037-202604071714506C37CC7AC813301C7CED-7CmlV9
 #EXTINF:-1 tvg-id="CCTV14" tvg-name="CCTV14" group-title="央视" tvg-logo="https://live.lizanyang.top/tv/CCTV14.png",CCTV14
 http://iptv.cdn.ha.chinamobile.com/PLTV/88888888/224/3221227173/index.m3u8
 #EXTINF:-1 tvg-id="CCTV14" tvg-name="CCTV14" group-title="央视" tvg-logo="https://live.lizanyang.top/tv/CCTV14.png",CCTV14
