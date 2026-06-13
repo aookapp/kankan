@@ -6,6 +6,7 @@ const TASKS = [
   { url: "https://live.lizanyang.top/hn.m3u", ua: "Mozilla/5.0" },
   { url: "https://itv.aptv.app/china-iptv/hnyd.m3u", ua: "AptvPlayer/1.2.5(iPhone)" },
   { url: "https://itv.5iclub.dpdns.org/MiGu.m3u", ua: "AptvPlayer/1.2.5(iPhone)" },
+  { url: "http://82.156.243.185:33389/fwc.m3u", ua: "AptvPlayer/1.2.5(iPhone)" },
   { url: "ss.m3u", local: true },
   { url: "https://iptv.catvod.com/list.php?token=38359067d045611929949bf45f99133c12c7aaca99d1b9f9dbfe202cf03c5d89", ua: "Mozilla/5.0" },
   { url: "https://raw.githubusercontent.com/develop202/migu_video/refs/heads/main/interface.txt", ua: "Mozilla/5.0" },
