@@ -135,13 +135,18 @@ async function main() {
     try {
       let text = '';
       if (task.local) {
-        const localPath = path.join(__dirname, task.url);
+        // ★ 核心修改：如果是本地文件，支持从上一级根目录（../）或当前目录读取
+        let localPath = path.join(__dirname, task.url);
+        if (!fs.existsSync(localPath)) {
+          localPath = path.join(__dirname, '..', task.url); // 尝试去根目录找
+        }
         if (!fs.existsSync(localPath)) {
           console.error(`❌ 找不到本地文件: ${localPath}`);
           return;
         }
         text = fs.readFileSync(localPath, 'utf-8');
-        console.log(`✅ 本地文件读取成功: ${task.url}`);
+        console.log(`✅ 本地文件读取成功: ${localPath}`);
+      }
       } else {
         const res = await fetchWithTimeout(task.url, { headers: { "User-Agent": task.ua } });
         if (!res.ok) throw new Error(`状态码 ${res.status}`);
