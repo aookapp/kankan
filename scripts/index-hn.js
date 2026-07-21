@@ -231,10 +231,21 @@ async function main() {
 
   const CHUNK_SIZE = 50; 
   const validUrlsSet = new Set();
+  const urlsToProbe = [];
 
-  for (let i = 0; i < allCandidateUrls.length; i += CHUNK_SIZE) {
-    const chunk = allCandidateUrls.slice(i, i + CHUNK_SIZE);
-    console.log(`正在探测第 ${i + 1} 到 ${Math.min(i + CHUNK_SIZE, allCandidateUrls.length)} 个链接...`);
+  // ★ 核心优化：对专网/运营商专属域名（如河南移动 CDN 等本地能看但云端无法测活的源）直接豁免放行
+  for (const url of allCandidateUrls) {
+    if (url.includes('chinamobile.com') || url.includes('hnyd') || url.includes('telecom')) {
+      validUrlsSet.add(url); // 直接强制标记为存活，不经过云函数测活
+    } else {
+      urlsToProbe.push(url); // 其他公共源正常送往云函数测活
+    }
+  }
+
+  // 对剩下需要测活的公共源分块发送
+  for (let i = 0; i < urlsToProbe.length; i += CHUNK_SIZE) {
+    const chunk = urlsToProbe.slice(i, i + CHUNK_SIZE);
+    console.log(`正在探测第 ${i + 1} 到 ${Math.min(i + CHUNK_SIZE, urlsToProbe.length)} 个链接...`);
     const aliveChunk = await probeUrls(chunk);
     aliveChunk.forEach(u => validUrlsSet.add(u));
   }
