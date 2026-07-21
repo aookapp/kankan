@@ -24,7 +24,7 @@ const BLOCK_LIST = require('./blocklist.js');
 const TEMPLATE = fs.readFileSync(path.join(__dirname, 'template.txt'), 'utf-8');
 
 // --- 5. 腾讯云函数探测配置 ---
-const TENCENT_API_URL = "https://1257432937-jxhtd0tpzy.ap-shanghai.tencentscf.com";
+const TENCENT_API_URL = "https://tvapi.dayucg.com";
 const SECRET_TOKEN = "DayuCG-IPTV-2026"; 
 
 // --- 6. 解析模板并构建数据结构 ---
