@@ -8,8 +8,12 @@ const TASKS = [
   { url: "https://itv.5iclub.dpdns.org/MiGu.m3u", ua: "AptvPlayer/1.2.5(iPhone)" },
   { url: "http://82.156.243.185:33389/fwc.m3u", ua: "AptvPlayer/1.2.5(iPhone)" },
   { url: "ss.m3u", local: true },
-  { url: "https://iptv.catvod.com/list.php?token=38359067d045611929949bf45f99133c12c7aaca99d1b9f9dbfe202cf03c5d89", ua: "Mozilla/5.0" },
   { url: "https://raw.githubusercontent.com/develop202/migu_video/refs/heads/main/interface.txt", ua: "Mozilla/5.0" },
+  { url: "https://bit.ly/iptv-aptv", ua: "Mozilla/5.0" },
+  { url: "https://live.445569.xyz/live.m3u", ua: "Mozilla/5.0" },
+  { url: "https://develop202.github.io/migu_video/interface.txt", ua: "Mozilla/5.0" },
+  { url: "https://bit.ly/itvlist", ua: "Mozilla/5.0" },
+  { url: "https://bit.ly/suxuang-v4", ua: "Mozilla/5.0" },
   { url: "https://raw.githubusercontent.com/suxuang/myIPTV/main/ipv4.m3u", ua: "Mozilla/5.0" }
 ];
 
