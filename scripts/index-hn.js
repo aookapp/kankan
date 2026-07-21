@@ -135,10 +135,9 @@ async function main() {
     try {
       let text = '';
       if (task.local) {
-        // ★ 核心修改：如果是本地文件，支持从上一级根目录（../）或当前目录读取
         let localPath = path.join(__dirname, task.url);
         if (!fs.existsSync(localPath)) {
-          localPath = path.join(__dirname, '..', task.url); // 尝试去根目录找
+          localPath = path.join(__dirname, '..', task.url); 
         }
         if (!fs.existsSync(localPath)) {
           console.error(`❌ 找不到本地文件: ${localPath}`);
@@ -146,7 +145,6 @@ async function main() {
         }
         text = fs.readFileSync(localPath, 'utf-8');
         console.log(`✅ 本地文件读取成功: ${localPath}`);
-      }
       } else {
         const res = await fetchWithTimeout(task.url, { headers: { "User-Agent": task.ua } });
         if (!res.ok) throw new Error(`状态码 ${res.status}`);
@@ -222,16 +220,15 @@ async function main() {
   // ★ 优化2：提取候选 URL 并进行分块云端探测
   console.log(`\n🔍 开始进行云端可用性探测...`);
   const allCandidateUrls = [];
-  const channelUrlMap = new Map(); // 记录 URL 归属于哪个频道
+  const channelUrlMap = new Map(); 
 
   for (const [key, info] of templateChannels.entries()) {
     if (info.urls.size === 0) continue;
-    const candidates = Array.from(info.urls).slice(0, 8); // 每个频道最多取 8 个去测
+    const candidates = Array.from(info.urls).slice(0, 8); 
     channelUrlMap.set(key, candidates);
     allCandidateUrls.push(...candidates);
   }
 
-  // 每次向云函数发送 50 个 URL，防止云函数超时或内存溢出
   const CHUNK_SIZE = 50; 
   const validUrlsSet = new Set();
 
@@ -256,7 +253,6 @@ async function main() {
   for (const [key, info] of templateChannels.entries()) {
     if (!channelUrlMap.has(key)) continue;
     
-    // 过滤出真正存活的链接，并只保留前 5 个
     const aliveUrlsForChannel = channelUrlMap.get(key).filter(url => validUrlsSet.has(url)).slice(0, 5);
     
     if (aliveUrlsForChannel.length > 0) {
